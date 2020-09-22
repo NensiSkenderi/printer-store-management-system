@@ -1,0 +1,14 @@
+.btnUpload {
+	 -fx-background-color :  #4186ce;
+     -fx-graphic: url("../images/upload-white.png");
+}
+
+.btnSave {
+	 -fx-background-color :  #4186ce;
+     -fx-graphic: url("../images/save-white.png");
+}
+
+.btnCancel {
+	 -fx-background-color :   #B74636;
+     -fx-graphic: url("../images/cancel-white.png");
+}

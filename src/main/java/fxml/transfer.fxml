@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="902.0" prefWidth="1160.0" style="-fx-background-color: white;" type="VBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="904.0" prefWidth="1207.0" style="-fx-border-color: grey; -fx-background-color: #f2f2f2;" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" prefWidth="1058.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox layoutX="6.0" layoutY="26.0" prefHeight="60.0" prefWidth="844.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label maxHeight="1.7976931348623157E308" prefHeight="37.0" prefWidth="266.0" text="Initiere transfer" textFill="#615858" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </AnchorPane>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: grey; -fx-background-color: white;" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+               <children>
+                  <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #cce0ff;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Suma : " textFill="#615858">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="7.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="21.0" prefWidth="80.0" style="-fx-border-color: grey; -fx-border-width: 0px 1px 0px 0px;" text="*" textFill="RED">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtSuma" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="232.0" HBox.hgrow="NEVER">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <ComboBox fx:id="cmb1" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="178.0" HBox.hgrow="NEVER">
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Label maxHeight="1.7976931348623157E308" style="-fx-border-color: grey; -fx-border-width: 0px 0px 0px 1px;" text="Destinatie " textFill="#615858">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="120.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="29.0" text="*" textFill="RED" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox layoutX="11.0" layoutY="11.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #cce0ff; -fx-border-width: 1px 0px 0px 0px; -fx-border-color: grey;">
+                     <children>
+                        <Label maxHeight="1.7976931348623157E308" prefWidth="135.0" style="-fx-border-width: 0px 1px 0px 0px; -fx-border-color: grey;" text="In Litere" textFill="#615858">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtInLitere" maxHeight="1.7976931348623157E308" prefHeight="39.0" prefWidth="529.0" HBox.hgrow="NEVER">
+                           <HBox.margin>
+                              <Insets left="20.0" right="61.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label maxHeight="1.7976931348623157E308" style="-fx-border-color: grey; -fx-border-width: 0px 0px 0px 1px;">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ComboBox fx:id="cmb2" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="178.0" HBox.hgrow="NEVER">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </ComboBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <Separator prefHeight="15.0" prefWidth="1026.0" />
+                  <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #4186CE;" text="BENEFICIAR" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #cce0ff;">
+                           <children>
+                              <Label text="Nume  " textFill="#615858">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="7.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="21.0" prefWidth="80.0" style="-fx-border-color: grey; -fx-border-width: 0px 1px 0px 0px;" text="*" textFill="RED">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtNume" maxHeight="1.7976931348623157E308" prefHeight="39.0" prefWidth="529.0">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #cce0ff; -fx-border-color: grey; -fx-border-width: 1px 0px 0px 0px;">
+                           <children>
+                              <Label text="Prenume " textFill="#615858">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="7.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="21.0" prefWidth="64.0" style="-fx-border-color: grey; -fx-border-width: 0px 1px 0px 0px;" text="*" textFill="RED">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtPrenume" maxHeight="1.7976931348623157E308" prefHeight="39.0" prefWidth="529.0">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="50.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #cce0ff; -fx-border-color: grey; -fx-border-width: 1px 0px 0px 0px;">
+                           <children>
+                              <Label maxHeight="1.7976931348623157E308" text="Adresa " textFill="#615858">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="7.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="21.0" prefWidth="79.0" style="-fx-border-color: grey; -fx-border-width: 0px 1px 0px 0px;" text="*" textFill="RED">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <VBox HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <HBox>
+                                             <children>
+                                                <ComboBox fx:id="cmb3" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                                                <TextField fx:id="txt1" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="209.0" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets left="30.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <Label maxHeight="1.7976931348623157E308" text="Nr" textFill="#0c66bf">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <Label maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="12.0" text="*" textFill="RED" />
+                                                <TextField fx:id="txtNr" layoutX="218.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="35.0" HBox.hgrow="ALWAYS" />
+                                                <Label layoutX="496.0" layoutY="10.0" maxHeight="1.7976931348623157E308" text="Bl." textFill="#0c66bf">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="10.0" right="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="txtBl" layoutX="530.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="35.0" HBox.hgrow="ALWAYS" />
+                                                <Label layoutX="570.0" layoutY="10.0" maxHeight="1.7976931348623157E308" text="Sc." textFill="#0c66bf">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="10.0" right="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="txtSc" layoutX="598.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="35.0" HBox.hgrow="ALWAYS" />
+                                                <Label layoutX="626.0" layoutY="10.0" maxHeight="1.7976931348623157E308" text="Et." textFill="#0c66bf">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="10.0" right="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="txtEt" layoutX="654.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="35.0" HBox.hgrow="ALWAYS" />
+                                                <Label layoutX="682.0" layoutY="10.0" maxHeight="1.7976931348623157E308" text="Apt." textFill="#0c66bf">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="10.0" right="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="txtApt" layoutX="710.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="35.0" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets left="20.0" right="20.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <HBox>
+                                             <children>
+                                                <Label maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="48.0" text="JUD :" textFill="#615858">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font>
+                                                </Label>
+                                                <ComboBox fx:id="cmb4" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="178.0" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets right="5.0" />
+                                                   </HBox.margin>
+                                                </ComboBox>
+                                                <ComboBox fx:id="cmb5" layoutX="58.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
+                                                <ComboBox fx:id="cmb6" layoutX="236.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="178.0" promptText="Introduceti litere" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </HBox.margin>
+                                                </ComboBox>
+                                                <ComboBox fx:id="cmb7" layoutX="414.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="91.0" HBox.hgrow="ALWAYS" />
+                                                <ComboBox fx:id="cmb8" layoutX="592.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="178.0" promptText="Introduceti litere" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ComboBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets left="20.0" right="20.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="90.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #cce0ff; -fx-border-color: grey; -fx-border-width: 1px 0px 0px 0px;">
+                           <children>
+                              <Label maxHeight="1.7976931348623157E308" text="Telefon " textFill="#615858">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="7.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="21.0" prefWidth="75.0" style="-fx-border-color: grey; -fx-border-width: 0px 1px 0px 0px;" textFill="RED">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txt2" maxHeight="1.7976931348623157E308" prefHeight="39.0" prefWidth="256.0">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="20.0" right="15.0" top="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <JFXCheckBox fx:id="checkBoxSms" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="234.0" text="Anuntare SMS expeditor (sericiu suplementar gratuit)" unCheckedColor="#4186ce" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </JFXCheckBox>
+                              <Label maxHeight="1.7976931348623157E308" text="Email" textFill="#615858">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtEmail" layoutX="186.0" layoutY="11.0" maxHeight="1.7976931348623157E308" prefHeight="39.0" prefWidth="256.0">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <HBox alignment="BOTTOM_CENTER">
+               <children>
+                  <JFXButton fx:id="btnSave" buttonType="RAISED" maxHeight="-Infinity" onAction="#save" prefHeight="40.0" prefWidth="245.0" styleClass="btnSubmit" stylesheets="@../css/style.css" text="Trimite spre aprobare" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnCancel" buttonType="RAISED" maxWidth="-Infinity" onAction="#cancel" prefHeight="38.0" prefWidth="197.0" style="-fx-border-color: #4186CE;" styleClass="btnDil" stylesheets="@../css/style.css" text="Renunta" textFill="#4186ce">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </VBox.margin>
+      </VBox>
+   </children>
+</fx:root>
