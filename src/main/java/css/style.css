@@ -1,14 +1,52 @@
 .btn {
-	-fx-border-color :  #06C49C;
+	-fx-border-color :  #DA251E;
 	-fx-border-width : 0px 0px 1px 0px;
 }
 
 .btnDil {
    -fx-background-color : white;
-     -fx-graphic: url("../images/cancel.png");
+     -fx-graphic: url("../images/logout.png");
 }
 
 .btnSubmit {
-	-fx-background-color : #4186CE;
+	-fx-background-color : #DA251E;
      -fx-graphic: url("../images/submit.png");
+}
+
+
+
+.btnShitjet {
+	 -fx-background-color : white;
+     -fx-graphic: url("../images/sales.png");
+}
+
+
+.btnShitjet:focused {
+     -fx-graphic: url("../images/sales-white.png");
+     -fx-background-color : #DA251E;
+     -fx-text-fill : white;
+}
+
+
+.btnInventari {
+	 -fx-background-color : white;
+     -fx-graphic: url("../images/inventory.png");
+}
+
+.btnInventari:focused {
+     -fx-graphic: url("../images/inventory-white.png");
+     -fx-background-color : #DA251E;
+     -fx-text-fill : white;
+}
+
+
+.btnKlientet {
+	 -fx-background-color : white;
+     -fx-graphic: url("../images/clients.png");
+}
+
+.btnKlientet:focused {
+     -fx-graphic: url("../images/clients-white.png");
+     -fx-background-color : #DA251E;
+     -fx-text-fill : white;
 }
