@@ -56,9 +56,6 @@ CREATE TABLE `bojra` (
   `emri` text NOT NULL,
   `created_date` date DEFAULT (curdate()),
   `lloji_bojes_id` int DEFAULT NULL,
-  `sasia` double DEFAULT '0',
-  `cmimi` double DEFAULT '0',
-  `vlear` double DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_bojra__idx` (`lloji_bojes_id`),
   CONSTRAINT `bojra_ibfk_1` FOREIGN KEY (`lloji_bojes_id`) REFERENCES `lloji_bojra` (`id`)
@@ -103,6 +100,33 @@ CREATE TABLE `fatura` (
 LOCK TABLES `fatura` WRITE;
 /*!40000 ALTER TABLE `fatura` DISABLE KEYS */;
 /*!40000 ALTER TABLE `fatura` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `furnizim`
+--
+
+DROP TABLE IF EXISTS `furnizim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `furnizim` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `bojra_id` int NOT NULL,
+  `sasia` double NOT NULL,
+  `cmimi` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `bojra_id` (`bojra_id`),
+  CONSTRAINT `furnizim_ibfk_1` FOREIGN KEY (`bojra_id`) REFERENCES `bojra` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `furnizim`
+--
+
+LOCK TABLES `furnizim` WRITE;
+/*!40000 ALTER TABLE `furnizim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `furnizim` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -152,6 +176,36 @@ LOCK TABLES `lloji_bojra` WRITE;
 /*!40000 ALTER TABLE `lloji_bojra` DISABLE KEYS */;
 /*!40000 ALTER TABLE `lloji_bojra` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `shitje`
+--
+
+DROP TABLE IF EXISTS `shitje`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shitje` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `bojra_id` int DEFAULT NULL,
+  `sasia` double DEFAULT NULL,
+  `cmimi` double DEFAULT NULL,
+  `klient_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `bojra_id` (`bojra_id`),
+  KEY `klient_id` (`klient_id`),
+  CONSTRAINT `shitje_ibfk_1` FOREIGN KEY (`bojra_id`) REFERENCES `bojra` (`id`),
+  CONSTRAINT `shitje_ibfk_2` FOREIGN KEY (`klient_id`) REFERENCES `klient` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shitje`
+--
+
+LOCK TABLES `shitje` WRITE;
+/*!40000 ALTER TABLE `shitje` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shitje` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -162,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-25 17:52:13
+-- Dump completed on 2020-09-25 18:21:07
