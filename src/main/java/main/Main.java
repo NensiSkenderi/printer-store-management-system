@@ -24,8 +24,8 @@ public class Main extends Application {
     	Scene scene = new Scene(root);
     	primaryStage.setResizable(true);
     	primaryStage.setScene(scene);
-    	primaryStage.setTitle("Dashboard");
-    	//primaryStage.getIcons().add(new Image("/images/logo.png"));
+    	primaryStage.setTitle("Refill Plus");
+    	primaryStage.getIcons().add(new Image("/images/logo_icon.png"));
     	//ControlDAO.getControlDao().getTemplateDao().getTest();
     	primaryStage.show();
     }

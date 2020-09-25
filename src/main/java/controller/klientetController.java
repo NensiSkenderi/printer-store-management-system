@@ -6,11 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
-public class templateController extends VBox {
+public class klientetController extends VBox {
 
 	
-	public templateController() {
-		FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxml/templateView.fxml"));
+	public klientetController() {
+		FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxml/klientet.fxml"));
 
 		fxml.setRoot(this);
 		fxml.setController(this);

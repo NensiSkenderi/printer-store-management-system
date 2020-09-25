@@ -1,15 +1,15 @@
 package utils;
 
-import controller.templateController;
+import controller.klientetController;
 
 import javafx.scene.layout.VBox;
 
 public class Controllers {
 
-	private static templateController templateController;
+	private static klientetController templateController;
 
 	public static void getTransfer(VBox box) {
-		templateController = new templateController() ;
+		templateController = new klientetController() ;
 		config(box, templateController);
 	}
 	
