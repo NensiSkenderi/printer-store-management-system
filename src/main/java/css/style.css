@@ -52,7 +52,7 @@
 }
 
 .btnAdd {
-     -fx-background-color : #00913E;
+     -fx-background-color : #DA251E;
      -fx-graphic: url("../images/add.png");
 }
 
@@ -62,7 +62,7 @@
 }
 
 .btnEdit {
-     -fx-background-color : #00913E;
+     -fx-background-color : #DA251E;
  	-fx-graphic: url("../images/edit.png");
 }
 

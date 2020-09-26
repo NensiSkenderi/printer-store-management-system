@@ -18,12 +18,12 @@
          <children>
             <HBox layoutX="6.0" layoutY="26.0" prefHeight="42.0" prefWidth="844.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="16.0">
                <children>
-                  <FontAwesomeIconView glyphName="SEARCH" style="-fx-fill: #00913E; -fx-font-size: 24;" text="">
+                  <FontAwesomeIconView glyphName="SEARCH" style="-fx-fill: #DA251E; -fx-font-size: 24;" text="">
                      <HBox.margin>
                         <Insets left="15.0" top="5.0" />
                      </HBox.margin>
                   </FontAwesomeIconView>
-                  <JFXTextField fx:id="txtSearch" focusColor="#00913e" labelFloat="true" prefHeight="38.0" prefWidth="185.0" promptText="Search..." unFocusColor="#00913e" HBox.hgrow="ALWAYS">
+                  <JFXTextField fx:id="txtSearch" focusColor="#da251e" labelFloat="true" prefHeight="38.0" prefWidth="185.0" promptText="Search..." unFocusColor="#da251e" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets bottom="5.0" top="5.0" />
                      </padding>
@@ -77,15 +77,16 @@
             <Insets bottom="20.0" />
          </padding>
       </AnchorPane>
-      <TableView fx:id="tblPerdoruesit" maxHeight="1.7976931348623157E308" prefHeight="812.0" prefWidth="600.0" stylesheets="@../css/table_view.css" VBox.vgrow="ALWAYS">
+      <TableView fx:id="tblShitjet" maxHeight="1.7976931348623157E308" prefHeight="812.0" prefWidth="600.0" stylesheets="@../css/table_view.css" VBox.vgrow="ALWAYS">
          <columns>
-            <TableColumn fx:id="tblColPerdoruesi" prefWidth="673.0" text="Perdoruesi" />
-            <TableColumn fx:id="tblColEmri" prefWidth="673.0" text="Emri" />
-            <TableColumn fx:id="tblColMbiemri" prefWidth="84.0" text="Mbiemri" />
-            <TableColumn fx:id="tblColTeDrejtat" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Te drejtat" />
-            <TableColumn fx:id="tblColTelefon" text="Telefon" />
-            <TableColumn fx:id="tblColEmail" text="Email" />
-            <TableColumn fx:id="tblColUserid" text="Vlera" visible="false" />
+            <TableColumn fx:id="tblColShitjeId" prefWidth="673.0" text="Lloji i Fatures" visible="false" />
+            <TableColumn fx:id="tblColLlojiFatures" prefWidth="673.0" text="Lloji i Fatures" />
+            <TableColumn fx:id="tblColData" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Data" />
+            <TableColumn fx:id="tblColMbiemri" prefWidth="84.0" text="Boja" />
+            <TableColumn fx:id="tblColKlienti" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Klienti" />
+            <TableColumn fx:id="tblColSasia" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Sasia" />
+            <TableColumn fx:id="tblColCmimi" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Cmimi" />
+            <TableColumn fx:id="tblColVlera" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Vlera" />
             <TableColumn fx:id="tblColDelete" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" />
          </columns>
          <columnResizePolicy>

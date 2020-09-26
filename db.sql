@@ -72,37 +72,6 @@ LOCK TABLES `bojra` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `fatura`
---
-
-DROP TABLE IF EXISTS `fatura`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `fatura` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `lloji_fatures` varchar(32) NOT NULL,
-  `klient_id` int NOT NULL,
-  `created_date` date DEFAULT (curdate()),
-  `arketim_id` int DEFAULT NULL,
-  `date_likujduar` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `klient_id` (`klient_id`),
-  KEY `arketim_id` (`arketim_id`),
-  CONSTRAINT `fatura_ibfk_1` FOREIGN KEY (`klient_id`) REFERENCES `klient` (`id`),
-  CONSTRAINT `fatura_ibfk_2` FOREIGN KEY (`arketim_id`) REFERENCES `arketuar` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `fatura`
---
-
-LOCK TABLES `fatura` WRITE;
-/*!40000 ALTER TABLE `fatura` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fatura` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `furnizim`
 --
 
@@ -186,15 +155,20 @@ DROP TABLE IF EXISTS `shitje`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shitje` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `bojra_id` int DEFAULT NULL,
+  `lloji_fatures` varchar(32) NOT NULL,
+  `klient_id` int NOT NULL,
+  `created_date` date DEFAULT (curdate()),
+  `arketim_id` int DEFAULT NULL,
+  `date_likujduar` date DEFAULT NULL,
+  `bojra_id` int NOT NULL,
   `sasia` double DEFAULT NULL,
   `cmimi` double DEFAULT NULL,
-  `klient_id` int NOT NULL,
+  `deleted` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `bojra_id` (`bojra_id`),
   KEY `klient_id` (`klient_id`),
-  CONSTRAINT `shitje_ibfk_1` FOREIGN KEY (`bojra_id`) REFERENCES `bojra` (`id`),
-  CONSTRAINT `shitje_ibfk_2` FOREIGN KEY (`klient_id`) REFERENCES `klient` (`id`)
+  KEY `arketim_id` (`arketim_id`),
+  CONSTRAINT `shitje_ibfk_1` FOREIGN KEY (`klient_id`) REFERENCES `klient` (`id`),
+  CONSTRAINT `shitje_ibfk_2` FOREIGN KEY (`arketim_id`) REFERENCES `arketuar` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -216,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-25 18:21:07
+-- Dump completed on 2020-09-26 23:46:12
