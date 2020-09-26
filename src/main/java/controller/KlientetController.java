@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 import model.Klient;
 import utils.Utils;
 
-public class klientetController extends VBox {
+public class KlientetController extends VBox {
 
 	@FXML
 	private JFXTextField txtSearch;
@@ -37,7 +37,7 @@ public class klientetController extends VBox {
 	private TableView<Klient> tblKlient;
 
 	@FXML
-	private TableColumn<Klient, String> tblColKlient, tblColNipt, tblColKontakt, tblColKlientId;
+	private TableColumn<Klient, String> tblColKlienti, tblColNipt, tblColKontakt, tblColKlientId;
 
 	@FXML
 	private TableColumn<Klient, Klient> tblColDelete;
@@ -48,7 +48,7 @@ public class klientetController extends VBox {
 
 	public static boolean edit = false;
 
-	public klientetController() {
+	public KlientetController() {
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxml/klientet.fxml"));
 
 		fxml.setRoot(this);
@@ -103,7 +103,7 @@ public class klientetController extends VBox {
 	private void loadKlient() throws SQLException {
 		tblKlient.getItems().clear();
 		tableViewData.addAll(ControlDAO.getControlDao().getKlientDao().viewKlient());
-		tblColKlient.setCellValueFactory(new PropertyValueFactory<>("klienti"));
+		tblColKlienti.setCellValueFactory(new PropertyValueFactory<>("klienti"));
 		tblColNipt.setCellValueFactory(new PropertyValueFactory<>("nipt"));
 		tblColKontakt.setCellValueFactory(new PropertyValueFactory<>("kontakt"));
 		tblColKlientId.setCellValueFactory(new PropertyValueFactory<>("id"));

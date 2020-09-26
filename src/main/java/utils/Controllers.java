@@ -1,23 +1,18 @@
 package utils;
 
 import controller.ShitjetController;
-import controller.klientetController;
+import controller.KlientetController;
 
 import javafx.scene.layout.VBox;
 
 public class Controllers {
 
-	private static klientetController klientetController;
-
-	public static void getKlientet(VBox box) {
-		klientetController = new klientetController() ;
-		config(box, klientetController);
-	private static klientetController templateController;
+	private static KlientetController klientetController;
 	private static ShitjetController shitjetController;
 	
-	public static void getTransfer(VBox box) {
-		templateController = new klientetController() ;
-		config(box, templateController);
+	public static void getKlientet(VBox box) {
+		klientetController = new KlientetController() ;
+		config(box, klientetController);
 	}
 	
 	public static void getShitjet(VBox box) {

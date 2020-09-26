@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import utils.Controllers;
 
-public class dashboardController implements Initializable {
+public class DashboardController implements Initializable {
 	
 	
 	@FXML
@@ -22,6 +22,8 @@ public class dashboardController implements Initializable {
 	@FXML
 	public void klientController() {
 		Controllers.getKlientet(mainVbox);
+	}
+	
 	public void shitjetController() {
 		Controllers.getShitjet(mainVbox);
 	}
