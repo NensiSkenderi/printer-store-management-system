@@ -32,7 +32,7 @@ CREATE TABLE `arketuar` (
   PRIMARY KEY (`id`),
   KEY `fk_arketuar_klient_idx` (`klient_id`),
   CONSTRAINT `fk_arketuar_klient` FOREIGN KEY (`klient_id`) REFERENCES `klient` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `arketuar` (
 
 LOCK TABLES `arketuar` WRITE;
 /*!40000 ALTER TABLE `arketuar` DISABLE KEYS */;
+INSERT INTO `arketuar` VALUES (1,'Kesh',1,'2020-09-27');
 /*!40000 ALTER TABLE `arketuar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +60,7 @@ CREATE TABLE `bojra` (
   PRIMARY KEY (`id`),
   KEY `fk_bojra__idx` (`lloji_bojes_id`),
   CONSTRAINT `bojra_ibfk_1` FOREIGN KEY (`lloji_bojes_id`) REFERENCES `lloji_bojra` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +69,7 @@ CREATE TABLE `bojra` (
 
 LOCK TABLES `bojra` WRITE;
 /*!40000 ALTER TABLE `bojra` DISABLE KEYS */;
+INSERT INTO `bojra` VALUES (1,'HP-302 BK/COL','2020-09-27',2),(2,'HP-651 BK/COL','2020-09-27',2),(3,'MLT-111','2020-09-27',1);
 /*!40000 ALTER TABLE `bojra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,8 +112,9 @@ CREATE TABLE `klient` (
   `klienti` text NOT NULL,
   `nipt` varchar(16) DEFAULT NULL,
   `created_date` date DEFAULT (curdate()),
+  `kontakt` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,6 +123,7 @@ CREATE TABLE `klient` (
 
 LOCK TABLES `klient` WRITE;
 /*!40000 ALTER TABLE `klient` DISABLE KEYS */;
+INSERT INTO `klient` VALUES (1,'Nensi','A12345678A','2020-09-27',NULL),(2,'Ergi','A12345678B','2020-09-27',NULL);
 /*!40000 ALTER TABLE `klient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +138,7 @@ CREATE TABLE `lloji_bojra` (
   `id` int NOT NULL AUTO_INCREMENT,
   `lloji_bojes` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,6 +147,7 @@ CREATE TABLE `lloji_bojra` (
 
 LOCK TABLES `lloji_bojra` WRITE;
 /*!40000 ALTER TABLE `lloji_bojra` DISABLE KEYS */;
+INSERT INTO `lloji_bojra` VALUES (1,'Cartridge laser'),(2,'Mbushje inkjet');
 /*!40000 ALTER TABLE `lloji_bojra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,12 +169,13 @@ CREATE TABLE `shitje` (
   `sasia` double DEFAULT NULL,
   `cmimi` double DEFAULT NULL,
   `deleted` tinyint DEFAULT NULL,
+  `shitjecol` varchar(45) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `klient_id` (`klient_id`),
   KEY `arketim_id` (`arketim_id`),
   CONSTRAINT `shitje_ibfk_1` FOREIGN KEY (`klient_id`) REFERENCES `klient` (`id`),
   CONSTRAINT `shitje_ibfk_2` FOREIGN KEY (`arketim_id`) REFERENCES `arketuar` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,6 +184,7 @@ CREATE TABLE `shitje` (
 
 LOCK TABLES `shitje` WRITE;
 /*!40000 ALTER TABLE `shitje` DISABLE KEYS */;
+INSERT INTO `shitje` VALUES (1,'TVSH',2,'2020-09-27',1,NULL,2,20,15,0,'0');
 /*!40000 ALTER TABLE `shitje` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -190,4 +197,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-26 23:46:12
+-- Dump completed on 2020-09-27  1:18:10
