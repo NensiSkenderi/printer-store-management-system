@@ -50,3 +50,23 @@
      -fx-background-color : #DA251E;
      -fx-text-fill : white;
 }
+
+.btnAdd {
+     -fx-background-color : #00913E;
+     -fx-graphic: url("../images/add.png");
+}
+
+.btnExcel {
+     -fx-background-color : #0093DC;
+	 -fx-graphic: url("../images/excel.png");
+}
+
+.btnEdit {
+     -fx-background-color : #00913E;
+ 	-fx-graphic: url("../images/edit.png");
+}
+
+.btnPdf {
+     -fx-background-color : #0093DC;
+ 	-fx-graphic: url("../images/pdf.png");
+}

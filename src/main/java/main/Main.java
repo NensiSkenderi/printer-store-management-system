@@ -3,7 +3,6 @@ package main;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import dao.ControlDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +25,6 @@ public class Main extends Application {
     	primaryStage.setScene(scene);
     	primaryStage.setTitle("Refill Plus");
     	primaryStage.getIcons().add(new Image("/images/logo_icon.png"));
-    	//ControlDAO.getControlDao().getTemplateDao().getTest();
     	primaryStage.show();
     }
 

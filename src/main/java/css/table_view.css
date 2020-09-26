@@ -16,7 +16,7 @@
 
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
-    -fx-text-fill: #DA251E;
+    -fx-text-fill: #0093DC;
     -fx-font-size: 16px;
     -fx-alignment:center;
     -fx-font-weight: 300;
@@ -59,7 +59,7 @@
 }
 
 .table-row-cell .text {
-       -fx-fill:  #B74636 ;
+       -fx-fill:  #0093DC;
 }
 .table-view .scroll-bar{
 	-fx-background-color: #969292;
