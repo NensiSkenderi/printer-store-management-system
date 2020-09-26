@@ -1,5 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="902.0" prefWidth="1160.0" style="-fx-background-color: white;" type="VBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+<fx:root prefHeight="904.0" prefWidth="1609.0" type="VBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="93.0" prefWidth="1609.0" style="-fx-background-color: white;">
+         <children>
+            <HBox layoutX="6.0" layoutY="26.0" prefHeight="42.0" prefWidth="844.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="16.0">
+               <children>
+                  <FontAwesomeIconView glyphName="SEARCH" style="-fx-fill: #4186ce; -fx-font-size: 24;" text="">
+                     <HBox.margin>
+                        <Insets left="15.0" top="5.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <JFXTextField fx:id="txtSearch" focusColor="#4186ce" labelFloat="true" prefHeight="38.0" prefWidth="185.0" promptText="Search..." unFocusColor="#4186ce" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" right="20.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <JFXButton fx:id="btnAdd" buttonType="RAISED" maxWidth="-Infinity" onAction="#add" prefHeight="38.0" prefWidth="197.0" styleClass="btnAdd" stylesheets="@../css/style.css" text="Shto" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btnEdit" buttonType="RAISED" maxWidth="-Infinity" onAction="#edit" prefHeight="38.0" prefWidth="197.0" styleClass="btnEdit" stylesheets="@../css/style.css" text="Edito" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXButton>
+                  <HBox maxWidth="-Infinity" prefWidth="380.0" HBox.hgrow="NEVER">
+                     <children>
+                        <JFXButton fx:id="btnExcel" buttonType="RAISED" maxWidth="-Infinity" onAction="#excel" prefHeight="38.0" prefWidth="187.0" styleClass="btnExcel" stylesheets="@../css/style.css" text="EXCEL" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Roboto Regular" size="15.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnPdf" buttonType="RAISED" maxWidth="-Infinity" onAction="#pdf" prefHeight="38.0" prefWidth="177.0" styleClass="btnPdf" stylesheets="@../css/style.css" text="PDF" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto Regular" size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </AnchorPane>
+      <TableView fx:id="tblKlient" maxHeight="1.7976931348623157E308" prefHeight="812.0" prefWidth="600.0" stylesheets="@../css/table_view.css" VBox.vgrow="ALWAYS">
+         <columns>
+            <TableColumn fx:id="tblColKlienti" prefWidth="673.0" text="Klienti" />
+            <TableColumn fx:id="tblColNipt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" resizable="false" text="NIPT" />
+            <TableColumn fx:id="tblColKontakt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" resizable="false" text="Kontakt" />
+            <TableColumn fx:id="tblColKlientId" text="Vlera" visible="false" />
+            <TableColumn fx:id="tblColDelete" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <placeholder>
+         		<Label text="Nuk ka të dhëna!" textFill="#777777" />
+          </placeholder>
+      </TableView>
+   </children>
+</fx:root>

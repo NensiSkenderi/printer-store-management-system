@@ -20,6 +20,8 @@ public class dashboardController implements Initializable {
 	}
 
 	@FXML
+	public void klientController() {
+		Controllers.getKlientet(mainVbox);
 	public void shitjetController() {
 		Controllers.getShitjet(mainVbox);
 	}

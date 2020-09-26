@@ -7,6 +7,11 @@ import javafx.scene.layout.VBox;
 
 public class Controllers {
 
+	private static klientetController klientetController;
+
+	public static void getKlientet(VBox box) {
+		klientetController = new klientetController() ;
+		config(box, klientetController);
 	private static klientetController templateController;
 	private static ShitjetController shitjetController;
 	
