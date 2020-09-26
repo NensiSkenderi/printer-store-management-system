@@ -3,8 +3,6 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXButton;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,8 +20,8 @@ public class dashboardController implements Initializable {
 	}
 
 	@FXML
-	public void templateController() {
-		Controllers.getTransfer(mainVbox);
+	public void shitjetController() {
+		Controllers.getShitjet(mainVbox);
 	}
 	
 	@FXML

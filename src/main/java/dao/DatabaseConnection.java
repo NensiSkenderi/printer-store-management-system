@@ -5,22 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class dbConnection {
+public class DatabaseConnection {
 
-	private static dbConnection instance = new dbConnection();
+	private static DatabaseConnection instance = new DatabaseConnection();
 	private Connection conn;
 	
-	private dbConnection() {
+	private DatabaseConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/toner?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","root");
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
 			ex.printStackTrace();
 		}
 	}
-	public static dbConnection instance() {
+	public static DatabaseConnection instance() {
         if (instance == null) {
-        	instance = new dbConnection();
+        	instance = new DatabaseConnection();
         }
         return instance;
     }

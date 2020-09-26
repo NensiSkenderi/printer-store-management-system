@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="741.0" prefWidth="1197.0" type="VBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="93.0" prefWidth="1609.0" style="-fx-background-color: white;">
          <children>
@@ -77,16 +77,16 @@
             <Insets bottom="20.0" />
          </padding>
       </AnchorPane>
-      <TableView fx:id="tblShitjet" maxHeight="1.7976931348623157E308" prefHeight="812.0" prefWidth="600.0" stylesheets="@../css/table_view.css" VBox.vgrow="ALWAYS">
+      <TableView fx:id="tblShitjet" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="812.0" prefWidth="600.0" stylesheets="@../css/table_view.css" VBox.vgrow="ALWAYS">
          <columns>
             <TableColumn fx:id="tblColShitjeId" prefWidth="673.0" text="Lloji i Fatures" visible="false" />
             <TableColumn fx:id="tblColLlojiFatures" prefWidth="673.0" text="Lloji i Fatures" />
-            <TableColumn fx:id="tblColData" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Data" />
-            <TableColumn fx:id="tblColMbiemri" prefWidth="84.0" text="Boja" />
-            <TableColumn fx:id="tblColKlienti" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Klienti" />
-            <TableColumn fx:id="tblColSasia" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Sasia" />
-            <TableColumn fx:id="tblColCmimi" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Cmimi" />
-            <TableColumn fx:id="tblColVlera" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Vlera" />
+            <TableColumn fx:id="tblColData" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="Data" />
+            <TableColumn fx:id="tblColBoja" prefWidth="84.0" text="Boja" />
+            <TableColumn fx:id="tblColKlienti" prefWidth="84.0" text="Klienti" />
+            <TableColumn fx:id="tblColSasia" prefWidth="84.0" text="Sasia" />
+            <TableColumn fx:id="tblColCmimi" prefWidth="84.0" text="Cmimi" />
+            <TableColumn fx:id="tblColVlera" prefWidth="84.0" text="Vlera" />
             <TableColumn fx:id="tblColDelete" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" />
          </columns>
          <columnResizePolicy>

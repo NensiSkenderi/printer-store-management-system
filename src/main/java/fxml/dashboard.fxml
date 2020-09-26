@@ -27,7 +27,7 @@
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
                <children>
-                  <JFXButton maxHeight="1.7976931348623157E308" onAction="#templateController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Shitjet" textFill="#DA251E" VBox.vgrow="ALWAYS">
+                  <JFXButton maxHeight="1.7976931348623157E308" onAction="#shitjetController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Shitjet" textFill="#DA251E" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
