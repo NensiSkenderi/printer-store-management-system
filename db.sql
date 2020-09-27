@@ -85,10 +85,11 @@ CREATE TABLE `furnizim` (
   `bojra_id` int NOT NULL,
   `sasia` double NOT NULL,
   `cmimi` double NOT NULL,
+  `created_date` date DEFAULT (curdate()),
   PRIMARY KEY (`id`),
   KEY `bojra_id` (`bojra_id`),
   CONSTRAINT `furnizim_ibfk_1` FOREIGN KEY (`bojra_id`) REFERENCES `bojra` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +98,7 @@ CREATE TABLE `furnizim` (
 
 LOCK TABLES `furnizim` WRITE;
 /*!40000 ALTER TABLE `furnizim` DISABLE KEYS */;
+INSERT INTO `furnizim` VALUES (1,1,12,20,'2020-09-27');
 /*!40000 ALTER TABLE `furnizim` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +116,7 @@ CREATE TABLE `klient` (
   `created_date` date DEFAULT (curdate()),
   `kontakt` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +125,7 @@ CREATE TABLE `klient` (
 
 LOCK TABLES `klient` WRITE;
 /*!40000 ALTER TABLE `klient` DISABLE KEYS */;
-INSERT INTO `klient` VALUES (1,'Nensi','A12345678A','2020-09-27',NULL),(2,'Ergi','A12345678B','2020-09-27',NULL);
+INSERT INTO `klient` VALUES (1,'Nensi','A12345678A','2020-09-27',NULL),(2,'Ergi','A12345678B','2020-09-27',NULL),(3,'test','tert','2020-09-27','069');
 /*!40000 ALTER TABLE `klient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,4 +199,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-27  1:18:10
+-- Dump completed on 2020-09-27 23:13:16

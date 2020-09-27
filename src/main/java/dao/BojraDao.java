@@ -73,8 +73,8 @@ public class BojraDao extends DAO {
 		stm.close();
 	}
 	
-	public int getKategoriId(String kategoriName) throws Exception {
-		String sql_query = "select id,kategori_emri from toner.bojra where kategori_emri = '"+kategoriName+"'";
+	public int getLlojiBojesId(String llojiBojes) throws Exception {
+		String sql_query = "select id,lloji_bojes from toner.bojra where lloji_bojes = '"+llojiBojes+"'";
 		stm = connector.prepareStatement(sql_query);
 		rs = stm.executeQuery(sql_query);
 		

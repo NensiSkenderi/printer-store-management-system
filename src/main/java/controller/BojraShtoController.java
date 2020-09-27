@@ -46,8 +46,9 @@ public class BojraShtoController implements Initializable{
 			return;
 		}
 		
-		LlojiBojes llojiBojes = new LlojiBojes();
-		
+		String llojiBojesEmri = cmbKategoria.getSelectionModel().getSelectedItem().toString();
+		LlojiBojes llojiBojes = new LlojiBojes(ControlDAO.getControlDao().getBojraDao()
+				.getLlojiBojesId(llojiBojesEmri), llojiBojesEmri);
 		
 		Bojra bojra = new Bojra();
 		bojra.setEmri(txtEmri.getText());
