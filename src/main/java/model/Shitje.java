@@ -11,11 +11,12 @@ public class Shitje {
 	private boolean deleted;
 	private Arketuar arketim_id;
 	private Bojra bojra_id;
+	private Klient klient_id;
 	
 	public Shitje() {}
 	
 	public Shitje(int id, String lloji_fatures, Date created_date, Date date_likujduar, double sasia, double cmimi,
-			boolean deleted, Arketuar arketim_id, Bojra bojra_id) {
+			boolean deleted, Arketuar arketim_id, Bojra bojra_id, Klient klient_id) {
 		this.id = id;
 		this.lloji_fatures = lloji_fatures;
 		this.created_date = created_date;
@@ -25,6 +26,7 @@ public class Shitje {
 		this.deleted = deleted;
 		this.arketim_id = arketim_id;
 		this.bojra_id = bojra_id;
+		this.klient_id = klient_id;
 	}
 
 	public int getId() {
@@ -106,6 +108,13 @@ public class Shitje {
 	public void setVlera(double vlera) {
 		this.vlera = vlera;
 	}
-	
+
+	public Klient getKlient_id() {
+		return klient_id;
+	}
+
+	public void setKlient_id(Klient klient_id) {
+		this.klient_id = klient_id;
+	}
 	
 }

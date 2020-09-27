@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="904.0" prefWidth="1609.0" type="VBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="828.0" prefWidth="1256.0" type="VBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="93.0" prefWidth="1609.0" style="-fx-background-color: white;">
          <children>
@@ -77,12 +77,14 @@
             <Insets bottom="20.0" />
          </padding>
       </AnchorPane>
-      <TableView fx:id="tblKlient" maxHeight="1.7976931348623157E308" prefHeight="812.0" prefWidth="600.0" stylesheets="@../css/table_view.css" VBox.vgrow="ALWAYS">
+      <TableView fx:id="tblFurnizim" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="812.0" prefWidth="600.0" stylesheets="@../css/table_view.css" VBox.vgrow="ALWAYS">
          <columns>
-            <TableColumn fx:id="tblColKlienti" prefWidth="673.0" text="Klienti" />
-            <TableColumn fx:id="tblColNipt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" resizable="false" text="NIPT" />
-            <TableColumn fx:id="tblColKontakt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" resizable="false" text="Kontakt" />
-            <TableColumn fx:id="tblColKlientId" text="Vlera" visible="false" />
+            <TableColumn fx:id="tblColFurnizimId" prefWidth="673.0" text="Lloji i Fatures" visible="false" />
+            <TableColumn fx:id="tblColBoja" prefWidth="84.0" text="Emri i Bojes" />
+            <TableColumn fx:id="tblColSasia" prefWidth="84.0" text="Sasia" />
+            <TableColumn fx:id="tblColCmimi" prefWidth="84.0" text="Cmimi" />
+            <TableColumn fx:id="tblColVlera" prefWidth="84.0" text="Vlera" />
+            <TableColumn fx:id="tblColData" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Data" />
             <TableColumn fx:id="tblColDelete" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" />
          </columns>
          <columnResizePolicy>

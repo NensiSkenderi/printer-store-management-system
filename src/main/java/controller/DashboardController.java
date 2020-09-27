@@ -28,6 +28,14 @@ public class DashboardController implements Initializable {
 		Controllers.getShitjet(mainVbox);
 	}
 	
+	public void bojraController() {
+		Controllers.getBojra(mainVbox);
+	}
+	
+	public void furnizimController() {
+		Controllers.getFurnizim(mainVbox);
+	}
+	
 	@FXML
 	public void dil() {
 		Platform.exit();

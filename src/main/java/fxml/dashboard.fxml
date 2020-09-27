@@ -49,6 +49,30 @@
                         <String fx:value="btnInventari" />
                         <String fx:value="btn" />
                      </styleClass></JFXButton>
+                  <JFXButton layoutX="10.0" layoutY="242.0" maxHeight="1.7976931348623157E308" onAction="#furnizimController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Furnizim" textFill="#DA251E">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnFurnizim" />
+                        <String fx:value="btn" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton layoutX="10.0" layoutY="372.0" maxHeight="1.7976931348623157E308" onAction="#bojraController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Bojra" textFill="#DA251E">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnBojra" />
+                        <String fx:value="btn" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                  </JFXButton>
                   <JFXButton layoutX="10.0" layoutY="248.0" maxHeight="1.7976931348623157E308" onAction="#klientController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Klientet" textFill="#DA251E" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />

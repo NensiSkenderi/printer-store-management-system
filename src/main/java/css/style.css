@@ -39,6 +39,28 @@
      -fx-text-fill : white;
 }
 
+.btnFurnizim{
+	 -fx-background-color : white;
+     -fx-graphic: url("../images/supply.png");
+}
+
+.btnFurnizim:focused {
+     -fx-graphic: url("../images/supply-white.png");
+     -fx-background-color : #DA251E;
+     -fx-text-fill : white;
+}
+
+.btnBojra{
+	 -fx-background-color : white;
+     -fx-graphic: url("../images/ink.png");
+}
+
+.btnBojra:focused {
+     -fx-graphic: url("../images/ink-white.png");
+     -fx-background-color : #DA251E;
+     -fx-text-fill : white;
+}
+
 
 .btnKlientet {
 	 -fx-background-color : white;
@@ -69,4 +91,10 @@
 .btnPdf {
      -fx-background-color : #0093DC;
  	-fx-graphic: url("../images/pdf.png");
+}
+
+.delete {
+	-fx-graphic: url("../images/delete.png");
+    -fx-cursor: hand;
+    -fx-background-color :  transparent;
 }

@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -102,7 +103,7 @@ public class KlientetController extends VBox {
 
 	private void loadKlient() throws SQLException {
 		tblKlient.getItems().clear();
-		tableViewData.addAll(ControlDAO.getControlDao().getKlientDao().viewKlient());
+		tableViewData.addAll(ControlDAO.getControlDao().getKlientDao().getKlient());
 		tblColKlienti.setCellValueFactory(new PropertyValueFactory<>("klienti"));
 		tblColNipt.setCellValueFactory(new PropertyValueFactory<>("nipt"));
 		tblColKontakt.setCellValueFactory(new PropertyValueFactory<>("kontakt"));
@@ -123,29 +124,18 @@ public class KlientetController extends VBox {
 					return;
 				}
 
-//				if (p.getUsername().equalsIgnoreCase("admin") && p.getAccess().equals("Admin")) {
-//					delete.setDisable(true);
-//				} else {
-//					delete.setDisable(false);
-//				}
-
 				setGraphic(delete);
 				Utils.style_delete_button(delete);
 				delete.setOnMouseClicked(event -> {
 					JFXAlert alert = new JFXAlert((Stage) tblKlient.getScene().getWindow());
 					JFXButton anullo = new JFXButton("Anullo");
-					anullo.setStyle("-fx-background-color: #B74636; -fx-text-fill: white;-fx-cursor: hand;");
+					anullo.setStyle("-fx-background-color: #DA251E; -fx-text-fill: white;-fx-cursor: hand;");
 					JFXButton konfirmo = new JFXButton("Konfirmo");
-					konfirmo.setStyle("-fx-background-color: #4186CE; -fx-text-fill: white;-fx-cursor: hand;");
+					konfirmo.setStyle("-fx-background-color: #0093DC; -fx-text-fill: white;-fx-cursor: hand;");
 					Utils.alert_fshirje(alert, "klientin?", konfirmo, anullo, false, "");
-					// konfirmo.getStylesheets().add(getClass().getResource("/css/jfoenix_css.css").toExternalForm());
-					// anullo.getStylesheets().add(getClass().getResource("/css/jfoenix_css.css").toExternalForm());
-
-					// konfirmo.getStyleClass().addAll("btnConfirm","btn","btnBlurred");
-					// anullo.getStyleClass().addAll("btnLogout" , "btn", "btnBlurred");
 
 					konfirmo.setOnAction(e -> {
-		//				delete(k.getId());
+						delete(k.getId());
 						alert.close();
 					});
 					anullo.setOnAction(e1 -> {
@@ -159,15 +149,32 @@ public class KlientetController extends VBox {
 		tblKlient.setItems(tableViewData);
 
 	}
-	
-	@FXML
-	private void add() {
 
+	private void getData() throws IOException, SQLException {
+		Klient klient = tblKlient.getSelectionModel().getSelectedItem();
+		klientDataHolder.setId(klient.getId());
+		klientDataHolder.setNipt(klient.getNipt());
+		klientDataHolder.setKontakt(klient.getKontakt());
+		klientDataHolder.setKlienti(klient.getKlienti());
+		
+		new Utils().openEditScene("klientetShto", "klienti");
+		loadKlient();
 	}
 
 	@FXML
-	private void edit() {
+	private void add() throws IOException, SQLException {
+		edit = false;
+		new Utils().openEditScene("klientetShto", "klienti");
+		loadKlient();
+	}
 
+	@FXML
+	private void edit() throws IOException, SQLException {
+		edit = true;
+		if(tblKlient.getSelectionModel().getSelectedItem() != null) 
+			getData();
+		else
+			Utils.alerti("Kujdes!", "Zgjidh nje rresht nga tabela!", AlertType.WARNING);
 	}
 
 	@FXML
@@ -177,6 +184,16 @@ public class KlientetController extends VBox {
 
 	@FXML
 	private void pdf() {
+
+	}
+
+	private void delete(int klientId) {
+		try {
+			ControlDAO.getControlDao().getKlientDao().deleteKlient(klientId);
+			loadKlient();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 

@@ -47,27 +47,27 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.Furnizim;
 import model.Shitje;
 import utils.HelperMethods;
 import utils.Utils;
 
-public class ShitjetController extends VBox {
+public class FurnizimController extends VBox {
 
 	@FXML private JFXTextField txtSearch;
 	@FXML private JFXButton btnAdd, btnEdit, btnPdf, btnExcel;
-	@FXML private TableView<Shitje> tblShitjet;
-	@FXML private TableColumn<Shitje, String> tblColShitjeId, tblColLlojiFatures, tblColData,
-	tblColBoja, tblColKlienti, tblColSasia, tblColCmimi, tblColVlera;
-	@FXML private TableColumn<Shitje, Shitje> tblColDelete;
+	@FXML private TableView<Furnizim> tblFurnizim;
+	@FXML private TableColumn<Furnizim, String> tblColFurnizimId, tblColBoja, tblColSasia, tblColCmimi, tblColVlera, tblColData;
+	@FXML private TableColumn<Furnizim, Furnizim> tblColDelete;
 
-	private ObservableList<Shitje> tableViewData = FXCollections.observableArrayList();
+	private ObservableList<Furnizim> tableViewData = FXCollections.observableArrayList();
 
-	public static Shitje shitjeDataHolder = new Shitje();
+	public static Furnizim furnizimDataHolder = new Furnizim();
 
 	public static boolean edit = false;
 
-	public ShitjetController() {
-		FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxml/shitjet.fxml"));
+	public FurnizimController() {
+		FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxml/furnizim.fxml"));
 
 		fxml.setRoot(this);
 		fxml.setController(this);
@@ -81,7 +81,7 @@ public class ShitjetController extends VBox {
 	@FXML
 	public void initialize() {
 		try {
-			loadShitjet();
+			loadFurnizim();
 			searchTableview();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -94,16 +94,16 @@ public class ShitjetController extends VBox {
 			public void invalidated(Observable o) {
 
 				if(txtSearch.textProperty().get().isEmpty()) {
-					tblShitjet.setItems(tableViewData);
+					tblFurnizim.setItems(tableViewData);
 					return;
 				}
 
-				ObservableList<Shitje> tableItems = FXCollections.observableArrayList();
-				ObservableList<TableColumn<Shitje, ?>> cols = tblShitjet.getColumns();
+				ObservableList<Furnizim> tableItems = FXCollections.observableArrayList();
+				ObservableList<TableColumn<Furnizim, ?>> cols = tblFurnizim.getColumns();
 
 				for(int i=0; i<tableViewData.size(); i++) {
 					for(int j=1; j<4; j++) { //shife kte ktu kur tmbushesh klientin
-						TableColumn<Shitje, ?> col = cols.get(j);
+						TableColumn<Furnizim, ?> col = cols.get(j);
 						String cellValue = col.getCellData(tableViewData.get(i)).toString();
 						cellValue = cellValue.toLowerCase();
 						if(cellValue.contains(txtSearch.textProperty().get().toLowerCase())) {
@@ -113,31 +113,23 @@ public class ShitjetController extends VBox {
 					}
 				}
 
-				tblShitjet.setItems(tableItems);
+				tblFurnizim.setItems(tableItems);
 			}
 		});
 	}
 
-	private void loadShitjet() throws SQLException {
-		tblShitjet.getItems().clear();
-		tableViewData.addAll(ControlDAO.getControlDao().getShitjeDao().getShitje());	
+	private void loadFurnizim() throws SQLException {
+		tblFurnizim.getItems().clear();
+		tableViewData.addAll(ControlDAO.getControlDao().getFurnizimDao().getFurnizim());	
 
-		tblColShitjeId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		tblColLlojiFatures.setCellValueFactory(new PropertyValueFactory<>("lloji_fatures"));
-		tblColData.setCellValueFactory(new PropertyValueFactory<>("created_date"));
-
-		tblColBoja.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
+		tblColFurnizimId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		tblColBoja.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Furnizim, String>, ObservableValue<String>>() {
 			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
+			public ObservableValue<String> call(TableColumn.CellDataFeatures<Furnizim, String> obj) {
 				return new SimpleStringProperty(obj.getValue().getBojra_id().getEmri());
 			}
 		});
-		tblColKlienti.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
-				return new SimpleStringProperty(obj.getValue().getKlient_id().getKlienti());
-			}
-		});
+		tblColData.setCellValueFactory(new PropertyValueFactory<>("created_date"));
 
 		tblColSasia.setCellValueFactory(new PropertyValueFactory<>("sasia"));
 		tblColCmimi.setCellValueFactory(new PropertyValueFactory<>("cmimi"));
@@ -145,13 +137,13 @@ public class ShitjetController extends VBox {
 
 		tblColDelete.setStyle("-fx-alignment:center;");
 		tblColDelete.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-		tblColDelete.setCellFactory(param -> new TableCell<Shitje, Shitje>() {
+		tblColDelete.setCellFactory(param -> new TableCell<Furnizim, Furnizim>() {
 
 			Button delete = new Button("");
-			protected void updateItem(Shitje sh, boolean empty) {
-				super.updateItem(sh, empty);
+			protected void updateItem(Furnizim f, boolean empty) {
+				super.updateItem(f, empty);
 
-				if (sh == null) {
+				if (f == null) {
 					setGraphic(null);
 					return;
 				}
@@ -160,26 +152,26 @@ public class ShitjetController extends VBox {
 				Utils.style_delete_button(delete);
 
 				delete.setOnMouseClicked(event -> {
-					JFXAlert alert = new JFXAlert((Stage) tblShitjet.getScene().getWindow());
+					JFXAlert alert = new JFXAlert((Stage) tblFurnizim.getScene().getWindow());
 					JFXButton anullo = new JFXButton("Anullo");
 					anullo.setStyle("-fx-background-color: #DA251E; -fx-text-fill: white;-fx-cursor: hand;");
 					JFXButton konfirmo = new JFXButton("Konfirmo");
 					konfirmo.setStyle("-fx-background-color: #0093DC; -fx-text-fill: white;-fx-cursor: hand;");
-					Utils.alert_fshirje(alert,"shitjen?", konfirmo, anullo, false, "");
+					Utils.alert_fshirje(alert,"bojen?", konfirmo, anullo, false, "");
 					konfirmo.setOnAction(e-> {
-						delete(sh.getId());
+						delete(f.getId());
 						alert.close();
 					}); 
 					anullo.setOnAction( e1 -> {
 						alert.close();
 					});
-					HelperMethods.refresh_focus_table(tblShitjet);
+					HelperMethods.refresh_focus_table(tblFurnizim);
 				});
 			}
 		});
 
 
-		tblShitjet.setItems(tableViewData);
+		tblFurnizim.setItems(tableViewData);
 
 	}
 
@@ -187,13 +179,13 @@ public class ShitjetController extends VBox {
 	private void add() throws IOException, SQLException {
 		edit = false;
 		//new Utils().open_edit_scene("perdoruesitShto", "user");
-		loadShitjet();
+		loadFurnizim();
 	}
 
 	@FXML
 	private void edit() throws IOException, SQLException {
 		edit = true;
-		//		if(tblShitjet.getSelectionModel().getSelectedItem() != null) {
+		//		if(tblFurnizim.getSelectionModel().getSelectedItem() != null) {
 		//			getData();
 		//		}
 		//
@@ -202,7 +194,7 @@ public class ShitjetController extends VBox {
 	}
 
 	private void getData() throws IOException, SQLException {
-		//		perdoruesit perdoruesit = tblShitjet.getSelectionModel().getSelectedItem();
+		//		perdoruesit perdoruesit = tblFurnizim.getSelectionModel().getSelectedItem();
 		//		perdoruesitDataHolder.setName(perdoruesit.getName());
 		//		perdoruesitDataHolder.setSurname(perdoruesit.getSurname());
 		//		perdoruesitDataHolder.setUsername(perdoruesit.getUsername());
@@ -212,7 +204,7 @@ public class ShitjetController extends VBox {
 		//		perdoruesitDataHolder.setAccess(perdoruesit.getAccess());
 		//		perdoruesitDataHolder.setUserid(perdoruesit.getUserid());
 		//		new Utils().open_edit_scene("perdoruesitShto", "user");
-		loadShitjet();
+		loadFurnizim();
 	}
 
 	@FXML
@@ -320,7 +312,7 @@ public class ShitjetController extends VBox {
 			c6.setHorizontalAlignment(Element.ALIGN_CENTER);
 			t.addCell(c6);
 
-			for(Shitje table_pdf : tableViewData){
+			for(Furnizim table_pdf : tableViewData){
 				//				t.addCell(table_pdf.getUsername());
 				//				t.addCell(table_pdf.getName());
 				//				t.addCell(table_pdf.getSurname());
@@ -346,7 +338,7 @@ public class ShitjetController extends VBox {
 	private void delete(int perdoruesitid) {
 		try {
 			//ControlDAO.getControlDao().getPerdoruesitDao().deletePerdoruesit(perdoruesitid);
-			loadShitjet();
+			loadFurnizim();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

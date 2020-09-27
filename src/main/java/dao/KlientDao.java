@@ -10,22 +10,22 @@ public class KlientDao extends DAO {
 		super();
 	}
 
-	public void addKlient(Klient user) throws SQLException {
+	public void addKlient(Klient klient) throws SQLException {
 
 		String insert_user = "INSERT INTO toner.klient " + 
 				"(klienti, nipt, kontakt) VALUES (?,?,?)";
 		stm = connector.prepareStatement(insert_user);
 
-		stm.setString(1, user.getKlienti());
-		stm.setString(2, user.getNipt());
-		stm.setString(3, user.getKontakt());
+		stm.setString(1, klient.getKlienti());
+		stm.setString(2, klient.getNipt());
+		stm.setString(3, klient.getKontakt());
 
 		stm.executeUpdate();
 		stm.close();
 	}
 
 
-	public List<Klient> viewKlient() throws SQLException{
+	public List<Klient> getKlient() throws SQLException{
 		List<Klient> data = new ArrayList<Klient>();
 		String query = "SELECT klienti, nipt, kontakt, id FROM toner.klient";
 		stm = connector.prepareStatement(query);
@@ -53,7 +53,7 @@ public class KlientDao extends DAO {
 
 	}
 
-	public void updatePerdorues(Klient k) throws SQLException {
+	public void updateKlient(Klient k) throws SQLException {
 		String update = "UPDATE toner.klient SET klienti = ?, nipt = ?,"
 				+ "kontakt = ? WHERE id = ?";
 		stm = connector.prepareStatement(update);

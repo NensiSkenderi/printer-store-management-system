@@ -82,23 +82,7 @@ public class Utils {
 		btn_delete.getStyleClass().add("delete");
 	}
 	
-	public static void style_paguaj_button(Button paguaj) {
-		paguaj.setMaxWidth(30);
-		paguaj.setCursor(Cursor.HAND);
-		paguaj.getStyleClass().add("paguaj");
-	}
-
-	public static void make_textfield_decimal(JFXTextField txt) {
-		txt.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d{0,10}([,.]\\d{0,3})?")) {
-                	txt.setText(oldValue);
-                }
-            }
-        });
-	}
-	public void open_edit_scene(String view_name, String icon) throws IOException {
+	public void openEditScene(String view_name, String icon) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/"+view_name+".fxml")); 
 		Parent root=(Parent)loader.load();
 		Scene scene = new Scene(root);
