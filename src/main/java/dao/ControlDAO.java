@@ -1,5 +1,6 @@
 package dao;
 
+import model.Inventari;
 
 public class ControlDAO {
 
@@ -9,6 +10,7 @@ public class ControlDAO {
 	private BojraDao bojra_dao = new BojraDao();
 	private FurnizimDao furnizim_dao = new FurnizimDao();
 	private LlojiBojesDao lloji_bojes_dao = new LlojiBojesDao();
+	private InventariDao inventari_dao = new InventariDao();
 	
 	public static ControlDAO getControlDao() {
 		return dao;
@@ -32,6 +34,10 @@ public class ControlDAO {
 	
 	public LlojiBojesDao getLlojiBojes() {
 		return lloji_bojes_dao;
+	}
+
+	public InventariDao getInventariDao() {
+		return inventari_dao;
 	}
 	
 }

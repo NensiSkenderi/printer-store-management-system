@@ -36,6 +36,10 @@ public class DashboardController implements Initializable {
 		Controllers.getFurnizim(mainVbox);
 	}
 	
+	public void inventariController() {
+		Controllers.getInventari(mainVbox);
+	}
+	
 	@FXML
 	public void dil() {
 		Platform.exit();

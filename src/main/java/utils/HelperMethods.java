@@ -129,7 +129,7 @@ public class HelperMethods {
 		return false;
 	}
 
-	public static void make_textfield_decimal(JFXTextField txt) {
+	public static void makeTextfieldDecimal(JFXTextField txt) {
 		txt.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {

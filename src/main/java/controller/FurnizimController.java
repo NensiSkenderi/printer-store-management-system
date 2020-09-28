@@ -42,11 +42,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.Bojra;
 import model.Furnizim;
 import model.Shitje;
 import utils.HelperMethods;
@@ -178,33 +180,40 @@ public class FurnizimController extends VBox {
 	@FXML
 	private void add() throws IOException, SQLException {
 		edit = false;
-		//new Utils().open_edit_scene("perdoruesitShto", "user");
+		new Utils().openEditScene("furnizimShto", "supply");
 		loadFurnizim();
 	}
 
 	@FXML
 	private void edit() throws IOException, SQLException {
 		edit = true;
-		//		if(tblFurnizim.getSelectionModel().getSelectedItem() != null) {
-		//			getData();
-		//		}
-		//
-		//		else
-		//			Utils.alerti("Kujdes!", "Zgjidh nje rresht nga tabela!", AlertType.WARNING);
+		if(tblFurnizim.getSelectionModel().getSelectedItem() != null) 
+			getData();
+		else
+			Utils.alerti("Kujdes!", "Zgjidh nje rresht nga tabela!", AlertType.WARNING);
+	}
+	
+	private void getData() throws IOException, SQLException {
+		Furnizim furnizim = tblFurnizim.getSelectionModel().getSelectedItem();
+		furnizimDataHolder.setId(furnizim.getId());
+		furnizimDataHolder.setBojra_id(furnizim.getBojra_id());
+		furnizimDataHolder.setCmimi(furnizim.getCmimi());
+		furnizimDataHolder.setSasia(furnizim.getSasia());
+		furnizimDataHolder.setVlera(furnizim.getVlera());
+		
+
+		new Utils().openEditScene("furnizimShto", "supply");
+		loadFurnizim();
 	}
 
-	private void getData() throws IOException, SQLException {
-		//		perdoruesit perdoruesit = tblFurnizim.getSelectionModel().getSelectedItem();
-		//		perdoruesitDataHolder.setName(perdoruesit.getName());
-		//		perdoruesitDataHolder.setSurname(perdoruesit.getSurname());
-		//		perdoruesitDataHolder.setUsername(perdoruesit.getUsername());
-		//		perdoruesitDataHolder.setPassword(perdoruesit.getPassword());
-		//		perdoruesitDataHolder.setTelefon(perdoruesit.getTelefon());
-		//		perdoruesitDataHolder.setEmail(perdoruesit.getEmail());
-		//		perdoruesitDataHolder.setAccess(perdoruesit.getAccess());
-		//		perdoruesitDataHolder.setUserid(perdoruesit.getUserid());
-		//		new Utils().open_edit_scene("perdoruesitShto", "user");
-		loadFurnizim();
+	private void delete(int furnizimId) {
+		try {
+			ControlDAO.getControlDao().getFurnizimDao().deleteFurnizim(furnizimId);
+			loadFurnizim();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@FXML
@@ -334,17 +343,5 @@ public class FurnizimController extends VBox {
 			System.out.println(ex.getMessage());
 		}
 	}
-
-	private void delete(int perdoruesitid) {
-		try {
-			//ControlDAO.getControlDao().getPerdoruesitDao().deletePerdoruesit(perdoruesitid);
-			loadFurnizim();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-
 
 }

@@ -108,7 +108,6 @@ public class KlientetController extends VBox {
 		tblColNipt.setCellValueFactory(new PropertyValueFactory<>("nipt"));
 		tblColKontakt.setCellValueFactory(new PropertyValueFactory<>("kontakt"));
 		tblColKlientId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		// tblColData.setCellValueFactory(new PropertyValueFactory<>("created_date"));
 
 		tblColDelete.setStyle("-fx-alignment:center;");
 		tblColDelete.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));

@@ -38,7 +38,7 @@
                         <String fx:value="btnShitjet" />
                         <String fx:value="btn" />
                      </styleClass></JFXButton>
-                  <JFXButton maxHeight="1.7976931348623157E308" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Inventari" textFill="#DA251E" VBox.vgrow="ALWAYS">
+                  <JFXButton maxHeight="1.7976931348623157E308" onAction="#inventariController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Inventari" textFill="#DA251E" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
