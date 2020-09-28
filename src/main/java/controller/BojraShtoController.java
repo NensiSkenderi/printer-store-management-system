@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -12,8 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import model.Bojra;
-import model.Klient;
 import model.LlojiBojes;
+import utils.Combo;
 import utils.HelperMethods;
 
 public class BojraShtoController implements Initializable{
@@ -27,8 +28,12 @@ public class BojraShtoController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		if(KlientetController.edit == true) {
+		try {
+			Combo.populate_combo(cmbKategoria, ControlDAO.getControlDao().getLlojiBojes().getLlojiBojes());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(BojraController.edit == true) {
 			bojraId = BojraController.bojraDataHolder.getId();
 			getData(BojraController.bojraDataHolder);
 		}
@@ -37,6 +42,8 @@ public class BojraShtoController implements Initializable{
 	}
 
 	private void getData(Bojra b) {
+		txtEmri.setText(b.getEmri());
+		cmbKategoria.setValue(b.getLloji_bojes_id().getLloji_bojes());
 	}
 	
 	@FXML

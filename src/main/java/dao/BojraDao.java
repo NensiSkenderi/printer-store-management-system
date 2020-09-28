@@ -16,8 +16,7 @@ public class BojraDao extends DAO {
 	public List<Bojra> getBojra() throws SQLException {
 		List<Bojra> data = new ArrayList<Bojra>();
 		String query = "select b.emri, b.id, ll.lloji_bojes, ll.id from toner.bojra b " + 
-				"join toner.lloji_bojra ll on b.lloji_bojes_id = ll.id " + 
-				"group by ll.lloji_bojes;";
+				"join toner.lloji_bojra ll on b.lloji_bojes_id = ll.id;";
 		stm = connector.prepareStatement(query);
 		rs = stm.executeQuery(query); 
 
@@ -60,8 +59,7 @@ public class BojraDao extends DAO {
 	}
 
 	public void updateBojra(Bojra bojra) throws SQLException {
-		String update = "UPDATE toner.bojra SET emri = ?, lloji_bojes_id = ?,"
-				+ "kontakt = ? WHERE id = ?";
+		String update = "UPDATE toner.bojra SET emri = ?, lloji_bojes_id = ? WHERE id = ?";
 		stm = connector.prepareStatement(update);
 
 		stm.setString(1, bojra.getEmri());
@@ -74,7 +72,7 @@ public class BojraDao extends DAO {
 	}
 	
 	public int getLlojiBojesId(String llojiBojes) throws Exception {
-		String sql_query = "select id,lloji_bojes from toner.bojra where lloji_bojes = '"+llojiBojes+"'";
+		String sql_query = "select id,lloji_bojes from toner.lloji_bojra where lloji_bojes = '"+llojiBojes+"'";
 		stm = connector.prepareStatement(sql_query);
 		rs = stm.executeQuery(sql_query);
 		

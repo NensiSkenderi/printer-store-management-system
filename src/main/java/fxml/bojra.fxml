@@ -34,7 +34,7 @@
                         <Insets left="15.0" right="20.0" />
                      </HBox.margin>
                   </JFXTextField>
-                  <JFXButton fx:id="btnAdd" buttonType="RAISED" maxWidth="-Infinity" onAction="#add" prefHeight="38.0" prefWidth="197.0" styleClass="btnAdd" stylesheets="@../css/style.css" text="Shto" textFill="WHITE">
+                  <JFXButton fx:id="btnAdd" buttonType="RAISED" maxWidth="-Infinity" onAction="#add" prefHeight="42.0" prefWidth="202.0" styleClass="btnAdd" stylesheets="@../css/style.css" text="Shto" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>
@@ -42,7 +42,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="btnEdit" buttonType="RAISED" maxWidth="-Infinity" onAction="#edit" prefHeight="38.0" prefWidth="197.0" styleClass="btnEdit" stylesheets="@../css/style.css" text="Edito" textFill="WHITE">
+                  <JFXButton fx:id="btnEdit" buttonType="RAISED" maxWidth="-Infinity" onAction="#edit" prefHeight="42.0" prefWidth="192.0" styleClass="btnEdit" stylesheets="@../css/style.css" text="Edito" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>
@@ -50,26 +50,6 @@
                         <Insets />
                      </HBox.margin>
                   </JFXButton>
-                  <HBox maxWidth="-Infinity" prefWidth="380.0" HBox.hgrow="NEVER">
-                     <children>
-                        <JFXButton fx:id="btnExcel" buttonType="RAISED" maxWidth="-Infinity" onAction="#excel" prefHeight="38.0" prefWidth="187.0" styleClass="btnExcel" stylesheets="@../css/style.css" text="EXCEL" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Roboto Regular" size="15.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="btnPdf" buttonType="RAISED" maxWidth="-Infinity" onAction="#pdf" prefHeight="38.0" prefWidth="177.0" styleClass="btnPdf" stylesheets="@../css/style.css" text="PDF" textFill="WHITE">
-                           <font>
-                              <Font name="Roboto Regular" size="15.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </HBox>
                </children>
             </HBox>
          </children>
@@ -80,9 +60,8 @@
       <TableView fx:id="tblBojra" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="812.0" prefWidth="600.0" stylesheets="@../css/table_view.css" VBox.vgrow="ALWAYS">
          <columns>
             <TableColumn fx:id="tblColBojraId" prefWidth="673.0" text="Lloji i Fatures" visible="false" />
-            <TableColumn fx:id="tblColKategoria" prefWidth="84.0" text="Kategoria" />
-            <TableColumn fx:id="tblColBoja" prefWidth="84.0" text="Boja" />
-            <TableColumn fx:id="tblColCmimi" prefWidth="84.0" text="Sasia" />
+            <TableColumn fx:id="tblColKategoria" prefWidth="84.0" text="Lloji i Bojes" />
+            <TableColumn fx:id="tblColBoja" prefWidth="84.0" text="Emri" />
             <TableColumn fx:id="tblColDelete" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" />
          </columns>
          <columnResizePolicy>

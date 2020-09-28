@@ -8,6 +8,7 @@ public class ControlDAO {
 	private ShitjeDao shitje_dao = new ShitjeDao();
 	private BojraDao bojra_dao = new BojraDao();
 	private FurnizimDao furnizim_dao = new FurnizimDao();
+	private LlojiBojesDao lloji_bojes_dao = new LlojiBojesDao();
 	
 	public static ControlDAO getControlDao() {
 		return dao;
@@ -27,6 +28,10 @@ public class ControlDAO {
 
 	public FurnizimDao getFurnizimDao() {
 		return furnizim_dao;
+	}
+	
+	public LlojiBojesDao getLlojiBojes() {
+		return lloji_bojes_dao;
 	}
 	
 }

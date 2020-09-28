@@ -38,18 +38,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Bojra;
-import model.Klient;
 import model.Bojra;
 import utils.HelperMethods;
 import utils.Utils;
@@ -179,7 +177,7 @@ public class BojraController extends VBox {
 		bojraDataHolder.setId(bojra.getId());
 		bojraDataHolder.setEmri(bojra.getEmri());
 		bojraDataHolder.setLloji_bojes_id(bojra.getLloji_bojes_id());
-		
+
 		new Utils().openEditScene("bojraShto", "ink");
 		loadBojrat();
 	}
@@ -200,144 +198,15 @@ public class BojraController extends VBox {
 			Utils.alerti("Kujdes!", "Zgjidh nje rresht nga tabela!", AlertType.WARNING);
 	}
 
-	@FXML
-	private void excel() {
+	private void delete(int bojraId) {
 		try {
-
-			Stage stage = (Stage)btnExcel.getScene().getWindow();
-
-			FileChooser fileChooser = new FileChooser();
-			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Comma Delimited (*.csv)", "*.csv");
-			fileChooser.getExtensionFilters().add(extFilter);
-
-			File file = fileChooser.showSaveDialog(stage);
-			FileWriter fileWriter = new FileWriter(file);
-
-			String text = "";
-			String header = "Nr" + "," + "Perdoruesi" + "," + "Emri" + "," + "Mbiemri"  + "," + "Te drejtat" + "," + "Telefon" + "," + "Email" +"\n" ;
-
-			fileWriter.write(header);
-			for(int i=0; i<tableViewData.size(); i++){
-
-				//				text = i+1 + "," + tableViewData.get(i).getUsername()+ "," + tableViewData.get(i).getName()+ "," + tableViewData.get(i).getSurname()+ "," 
-				//				+ tableViewData.get(i).getAccess() + "," + tableViewData.get(i).getTelefon()+ "," + tableViewData.get(i).getEmail() + "\n";
-				//				fileWriter.write(text);
-			}
-
-			fileWriter.close();
-
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
-
-	@FXML
-	private void pdf() {
-		try {
-
-			Stage stage = (Stage)btnExcel.getScene().getWindow();
-
-			FileChooser fileChooser = new FileChooser();
-			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF (*.PDF, *.pdf)", "*.pdf","*.PDF");
-			fileChooser.getExtensionFilters().add(extFilter);
-
-			File file = fileChooser.showSaveDialog(stage);
-
-			Document document = new Document(PageSize.A4.rotate(), 5f, 5f, 5f, 5f);
-			PdfWriter writer = PdfWriter.getInstance(document,new FileOutputStream(file.getAbsolutePath()));
-
-			document.open();
-
-			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-			Date date = new Date();
-			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-
-			Anchor anchorTarget = new Anchor("Data "+dateFormat.format(date) + " Ora " + sdf.format(cal.getTime()));
-
-			Paragraph paragraph1 = new Paragraph();
-			paragraph1.setAlignment(Paragraph.ALIGN_RIGHT);
-			paragraph1.setSpacingBefore(15);
-			paragraph1.setSpacingAfter(15);
-
-			paragraph1.add(anchorTarget);
-			document.add(paragraph1);
-
-			Paragraph p2 = new Paragraph("Denas Power Management",FontFactory.getFont(FontFactory.TIMES, 18, Font.BOLD, new CMYKColor(169,169,169,0)));
-			p2.setAlignment(Paragraph.ALIGN_CENTER);
-			p2.setSpacingBefore(20);		
-			document.add(p2);
-
-			Paragraph p3 = new Paragraph("Karburanti",FontFactory.getFont(FontFactory.TIMES, 14, Font.BOLD, new BaseColor(183, 70, 54)));
-			p3.setAlignment(Paragraph.ALIGN_CENTER);
-			p3.setSpacingBefore(25);		
-			document.add(p3);
-
-			PdfPTable t = new PdfPTable(6);
-			t.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
-			t.setSpacingBefore(30);
-			t.setWidthPercentage(95);
-			t.setSpacingAfter(5);
-			Font bold = new Font(FontFamily.HELVETICA, 14, Font.BOLD);
-
-			Phrase phrase1 = new Phrase("Perdoruesi", bold);
-			PdfPCell c1 = new PdfPCell(phrase1);
-			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-			t.addCell(c1);
-			Phrase phrase2 = new Phrase("Emri", bold);
-			PdfPCell c2 = new PdfPCell(phrase2);
-			c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-			t.addCell(c2);
-			Phrase phrase3 = new Phrase("Mbiemri", bold);
-			PdfPCell c3 = new PdfPCell(phrase3);
-			c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-			t.addCell(c3);
-			Phrase phrase4 = new Phrase("Te drejtat", bold);
-			PdfPCell c4 = new PdfPCell(phrase4);
-			c4.setHorizontalAlignment(Element.ALIGN_CENTER);
-			t.addCell(c4);
-			Phrase phrase5 = new Phrase("Telefon", bold);
-			PdfPCell c5 = new PdfPCell(phrase5);
-			c5.setHorizontalAlignment(Element.ALIGN_CENTER);
-			t.addCell(c5);
-			Phrase phrase6 = new Phrase("Email", bold);
-			PdfPCell c6 = new PdfPCell(phrase6);
-			c6.setHorizontalAlignment(Element.ALIGN_CENTER);
-			t.addCell(c6);
-
-			for(Bojra table_pdf : tableViewData){
-				//				t.addCell(table_pdf.getUsername());
-				//				t.addCell(table_pdf.getName());
-				//				t.addCell(table_pdf.getSurname());
-				//				t.addCell(table_pdf.getAccess());
-				//				t.addCell(table_pdf.getTelefon());
-				//				t.addCell(table_pdf.getEmail());
-
-			}
-			document.add(t);
-
-			PdfPTable table = new PdfPTable(1);
-			table.setWidthPercentage(95);
-			table.setSpacingBefore(50);
-			table.getDefaultCell().setUseAscender(true);
-			table.getDefaultCell().setUseDescender(true);
-			document.add(table);
-			document.close();
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
-
-	private void delete(int perdoruesitid) {
-		try {
-			//ControlDAO.getControlDao().getPerdoruesitDao().deletePerdoruesit(perdoruesitid);
+			ControlDAO.getControlDao().getBojraDao().deleteBojra(bojraId);
 			loadBojrat();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 	}
-
 
 
 }

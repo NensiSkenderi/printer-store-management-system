@@ -157,7 +157,7 @@ public class FurnizimController extends VBox {
 					anullo.setStyle("-fx-background-color: #DA251E; -fx-text-fill: white;-fx-cursor: hand;");
 					JFXButton konfirmo = new JFXButton("Konfirmo");
 					konfirmo.setStyle("-fx-background-color: #0093DC; -fx-text-fill: white;-fx-cursor: hand;");
-					Utils.alert_fshirje(alert,"bojen?", konfirmo, anullo, false, "");
+					Utils.alert_fshirje(alert,"furnizimin?", konfirmo, anullo, false, "");
 					konfirmo.setOnAction(e-> {
 						delete(f.getId());
 						alert.close();
