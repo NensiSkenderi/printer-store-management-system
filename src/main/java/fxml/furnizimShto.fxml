@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -20,11 +21,7 @@
             </Label>
          </children>
       </Pane>
-      <JFXTextField fx:id="txtEmriBojes" focusColor="#da251e" labelFloat="true" layoutX="100.0" layoutY="164.0" prefHeight="42.0" prefWidth="283.0" promptText="Emri i Bojes*" unFocusColor="#da251e">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXTextField>
+      <JFXComboBox fx:id="cmbEmriBojes" focusColor="#da251e" layoutX="101.0" layoutY="173.0" prefHeight="39.0" prefWidth="283.0" promptText="Emri i Bojes*" style="-fx-font-size: 18px;" unFocusColor="#da251e" />
       <JFXTextField fx:id="txtSasia" focusColor="#da251e" labelFloat="true" layoutX="101.0" layoutY="271.0" prefHeight="39.0" prefWidth="283.0" promptText="Sasia*" unFocusColor="#da251e">
          <font>
             <Font size="18.0" />

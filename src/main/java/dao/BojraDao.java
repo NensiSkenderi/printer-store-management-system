@@ -46,10 +46,9 @@ public class BojraDao extends DAO {
 	}
 	
 	public void addBojra(Bojra bojra) throws SQLException {
-
-		String insert_user = "INSERT INTO toner.bojra " + 
+		String insertBojra = "INSERT INTO toner.bojra " + 
 				"(emri, lloji_bojes_id) VALUES (?,?)";
-		stm = connector.prepareStatement(insert_user);
+		stm = connector.prepareStatement(insertBojra);
 
 		stm.setString(1, bojra.getEmri());
 		stm.setInt(2, bojra.getLloji_bojes_id().getId());
@@ -79,6 +78,21 @@ public class BojraDao extends DAO {
 		while(rs.next()) 
 			return rs.getInt(1);
 		return 0;
+	}
+	
+	public List<String> getEmriBojes() throws SQLException{
+		List<String> data = new ArrayList<>();
+		String query = "Select emri from toner.bojra ORDER BY emri;";
+		
+		stm = connector.prepareStatement(query);
+		rs = stm.executeQuery(query);
+		
+		while(rs.next()) {
+			String kategori = rs.getString(1);
+			data.add(kategori);
+		}
+		
+		return data;
 	}
 
 }

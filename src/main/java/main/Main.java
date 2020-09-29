@@ -25,6 +25,7 @@ public class Main extends Application {
     	primaryStage.setScene(scene);
     	primaryStage.setTitle("Refill Plus");
     	primaryStage.getIcons().add(new Image("/images/logo_icon.png"));
+    	primaryStage.setMaximized(true);
     	primaryStage.show();
     }
 

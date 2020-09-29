@@ -16,15 +16,22 @@ public class InventariDao extends DAO {
 
 	public List<Inventari> getInventari() throws SQLException {
 		List<Inventari> data = new ArrayList<Inventari>();
-		String query = "select i.gjendja, b.id, b.emri from toner.inventari i join toner.bojra b "
-				+ "on i.bojra_id = b.id;";
+		String query = "select sum(i.gjendja), b.id, b.emri, ll.id, ll.lloji_bojes "
+				+ "from toner.inventari i join toner.bojra b " + 
+				"on i.bojra_id = b.id join toner.lloji_bojra ll "
+				+ "on ll.id = b.lloji_bojes_id group by b.emri;";
 		stm = connector.prepareStatement(query);
 		rs = stm.executeQuery(query); 
 
 		while(rs.next()) {
+			LlojiBojes llojiBojes = new LlojiBojes();
+			llojiBojes.setId(rs.getInt(4));
+			llojiBojes.setLloji_bojes(rs.getString(5));
+			
 			Bojra bojra = new Bojra();
 			bojra.setId(rs.getInt(2));
 			bojra.setEmri(rs.getString(3));
+			bojra.setLloji_bojes_id(llojiBojes);
 			
 			Inventari inventari = new Inventari();
 			inventari.setBojra_id(bojra);
@@ -47,6 +54,18 @@ public class InventariDao extends DAO {
 		stm.executeUpdate();
 		stm.close();
 	}
+	
+	public void updateGjendje(Inventari inventari) throws SQLException {
+		String insert_user = "update toner.inventari set gjendja = ? where bojra_id = ?";
+		stm = connector.prepareStatement(insert_user);
+		
+		stm.setDouble(1, inventari.getGjendja());
+		stm.setInt(2, inventari.getBojra_id().getId());
+	
+		stm.executeUpdate();
+		stm.close();
+	}
+
 
 
 }

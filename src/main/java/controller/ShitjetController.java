@@ -57,7 +57,7 @@ public class ShitjetController extends VBox {
 	@FXML private JFXButton btnAdd, btnEdit, btnPdf, btnExcel;
 	@FXML private TableView<Shitje> tblShitjet;
 	@FXML private TableColumn<Shitje, String> tblColShitjeId, tblColLlojiFatures, tblColData,
-	tblColBoja, tblColKlienti, tblColSasia, tblColCmimi, tblColVlera;
+	tblColBoja, tblColKlienti, tblColSasia, tblColCmimi, tblColVlera, tblColArketuar;
 	@FXML private TableColumn<Shitje, Shitje> tblColDelete;
 
 	private ObservableList<Shitje> tableViewData = FXCollections.observableArrayList();
@@ -132,6 +132,14 @@ public class ShitjetController extends VBox {
 				return new SimpleStringProperty(obj.getValue().getBojra_id().getEmri());
 			}
 		});
+		
+		tblColArketuar.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
+				return new SimpleStringProperty(obj.getValue().getArketim_id().getMenyra());
+			}
+		});
+		
 		tblColKlienti.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {

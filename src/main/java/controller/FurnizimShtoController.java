@@ -1,9 +1,11 @@
 package controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
 import dao.ControlDAO;
@@ -14,13 +16,15 @@ import model.Bojra;
 import model.Furnizim;
 import model.Inventari;
 import model.Klient;
+import utils.Combo;
 import utils.HelperMethods;
 
 public class FurnizimShtoController implements Initializable{
 
-	@FXML private JFXTextField txtEmriBojes,txtSasia,txtCmimi;
+	@FXML private JFXTextField txtSasia,txtCmimi;
 	@FXML private JFXButton btnAnullo;
 	@FXML private Label lblError;
+	@FXML private JFXComboBox<String> cmbEmriBojes;
 	
 	private int furnizimId = 0;
 	
@@ -29,6 +33,11 @@ public class FurnizimShtoController implements Initializable{
 		HelperMethods.makeTextfieldDecimal(txtCmimi);
 		HelperMethods.makeTextfieldDecimal(txtSasia);
 		
+		try {
+			Combo.populate_combo(cmbEmriBojes, ControlDAO.getControlDao().getBojraDao().getEmriBojes());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		if(FurnizimController.edit == true) {
 			furnizimId = FurnizimController.furnizimDataHolder.getId();
 			getData(FurnizimController.furnizimDataHolder);
@@ -38,21 +47,21 @@ public class FurnizimShtoController implements Initializable{
 	}
 
 	private void getData(Furnizim f) {
-		txtEmriBojes.setText(f.getBojra_id().getEmri());
+		cmbEmriBojes.setValue(f.getBojra_id().getEmri());
 		txtSasia.setText(f.getSasia() + "");
 		txtCmimi.setText(f.getCmimi() + "");
 	}
 	
 	@FXML
 	public void ruaj() throws Exception {
-		if(HelperMethods.checkEmptyText(txtEmriBojes.getText(), txtSasia.getText(), txtCmimi.getText())) {
+		if(HelperMethods.checkEmptyText(txtSasia.getText(), txtCmimi.getText()) || HelperMethods.checkEmptyCombobox(cmbEmriBojes)) {
 			lblError.setText("Ploteso fushat!*");
 			return;
 		}
 		
 		Bojra bojra = new Bojra();
-		bojra.setEmri(txtEmriBojes.getText());
-		bojra.setId(ControlDAO.getControlDao().getFurnizimDao().getIdFromBoja(txtEmriBojes.getText()));
+		bojra.setEmri(cmbEmriBojes.getValue());
+		bojra.setId(ControlDAO.getControlDao().getFurnizimDao().getIdFromBoja(cmbEmriBojes.getValue()));
 		
 		Furnizim furnizim = new Furnizim();
 		furnizim.setId(furnizimId);
@@ -66,10 +75,14 @@ public class FurnizimShtoController implements Initializable{
 		
 		if(furnizimId == 0) {
 			ControlDAO.getControlDao().getFurnizimDao().addFurnizim(furnizim);
-			ControlDAO.getControlDao().getInventariDao().addGjendje(inventari);
+			if(ControlDAO.getControlDao().getFurnizimDao().checkBoja(bojra.getId()))
+				ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
+			else
+				ControlDAO.getControlDao().getInventariDao().addGjendje(inventari);
 		}
 		else {
 			ControlDAO.getControlDao().getFurnizimDao().updateFurnizim(furnizim);
+			ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
 		}
 		
 		HelperMethods.closeStage(btnAnullo);

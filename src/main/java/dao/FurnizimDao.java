@@ -5,10 +5,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.control.Alert.AlertType;
 import model.Bojra;
 import model.Furnizim;
-import utils.Utils;
 
 public class FurnizimDao extends DAO {
 	public FurnizimDao() {
@@ -44,10 +42,6 @@ public class FurnizimDao extends DAO {
 	}
 	
 	public void addFurnizim(Furnizim furnizim) throws SQLException {
-		if(this.checkBoja(furnizim.getBojra_id().getEmri())) {
-			Utils.alerti("Kujdes!", "Boja nk ekziston!", AlertType.WARNING);
-			return;
-		}
 		String insert_user = "INSERT INTO toner.furnizim " + 
 				"(sasia, cmimi, bojra_id) VALUES (?,?,?)";
 		stm = connector.prepareStatement(insert_user);
@@ -95,8 +89,8 @@ public class FurnizimDao extends DAO {
 		return 0;
 	}
 	
-	public boolean checkBoja(String emri) throws SQLException {
-		String query = "select * from toner.bojra where emri = '"+emri+"'";
+	public boolean checkBoja(int bojaId) throws SQLException {
+		String query = "select * from toner.bojra where id = '"+bojaId+"'";
 		stm = connector.prepareStatement(query);
 		rs = stm.executeQuery();
 		if(rs.next() == false)

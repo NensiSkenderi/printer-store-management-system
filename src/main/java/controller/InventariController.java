@@ -95,12 +95,12 @@ public class InventariController extends VBox {
 	private void loadInventari() throws SQLException {
 		tblnventari.getItems().clear();
 		tableViewData.addAll(ControlDAO.getControlDao().getInventariDao().getInventari());
-//		tblColKategoria.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Inventari, String>, ObservableValue<String>>() {
-//			@Override
-//			public ObservableValue<String> call(TableColumn.CellDataFeatures<Inventari, String> obj) {
-//				return new SimpleStringProperty(obj.getValue().getBojra_id().getLloji_bojes_id().getLloji_bojes());
-//			}
-//		});
+		tblColKategoria.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Inventari, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(TableColumn.CellDataFeatures<Inventari, String> obj) {
+				return new SimpleStringProperty(obj.getValue().getBojra_id().getLloji_bojes_id().getLloji_bojes());
+			}
+		});
 		tblColBoja.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Inventari, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(TableColumn.CellDataFeatures<Inventari, String> obj) {

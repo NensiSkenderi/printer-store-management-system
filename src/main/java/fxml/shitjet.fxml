@@ -87,6 +87,7 @@
             <TableColumn fx:id="tblColSasia" prefWidth="84.0" text="Sasia" />
             <TableColumn fx:id="tblColCmimi" prefWidth="84.0" text="Cmimi" />
             <TableColumn fx:id="tblColVlera" prefWidth="84.0" text="Vlera" />
+            <TableColumn fx:id="tblColArketuar" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" resizable="false" text="Arketuar" />
             <TableColumn fx:id="tblColDelete" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" />
          </columns>
          <columnResizePolicy>
