@@ -48,7 +48,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.Bojra;
 import model.Furnizim;
+import model.Inventari;
 import utils.HelperMethods;
 import utils.Utils;
 
@@ -159,7 +161,7 @@ public class FurnizimController extends VBox {
 					konfirmo.setStyle("-fx-background-color: #0093DC; -fx-text-fill: white;-fx-cursor: hand;");
 					Utils.alert_fshirje(alert,"furnizimin?", konfirmo, anullo, false, "");
 					konfirmo.setOnAction(e-> {
-						delete(f.getId());
+						delete(f.getId(), f.getBojra_id(), f.getSasia());
 						alert.close();
 					}); 
 					anullo.setOnAction( e1 -> {
@@ -199,14 +201,20 @@ public class FurnizimController extends VBox {
 		furnizimDataHolder.setSasia(furnizim.getSasia());
 		furnizimDataHolder.setVlera(furnizim.getVlera());
 		
-
 		new Utils().openEditScene("furnizimShto", "supply");
 		loadFurnizim();
 	}
 
-	private void delete(int furnizimId) {
+	private void delete(int furnizimId, Bojra bojra, double sasia) {
 		try {
 			ControlDAO.getControlDao().getFurnizimDao().deleteFurnizim(furnizimId);
+			double gjendjaVjeter = ControlDAO.getControlDao().getInventariDao().getGjendja(bojra);
+			Inventari inventari = new Inventari();
+			inventari.setBojra_id(bojra);
+			inventari.setGjendja(gjendjaVjeter - sasia);
+			
+			ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
+			
 			loadFurnizim();
 		} catch (SQLException e) {
 			e.printStackTrace();

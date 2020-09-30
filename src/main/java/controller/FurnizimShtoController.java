@@ -72,14 +72,15 @@ public class FurnizimShtoController implements Initializable{
 		inventari.setBojra_id(bojra);
 		
 		double gjendjaVjeter = ControlDAO.getControlDao().getInventariDao().getGjendja(bojra);
-		inventari.setGjendja(gjendjaVjeter + furnizim.getSasia());
 		
 		if(furnizimId == 0) {
 			ControlDAO.getControlDao().getFurnizimDao().addFurnizim(furnizim);
+			inventari.setGjendja(gjendjaVjeter + furnizim.getSasia());
 			checkBoja(bojra, inventari);
 		}
 		else {
 			ControlDAO.getControlDao().getFurnizimDao().updateFurnizim(furnizim);
+			inventari.setGjendja(gjendjaVjeter);
 			checkBoja(bojra, inventari);
 		}
 		
@@ -88,10 +89,9 @@ public class FurnizimShtoController implements Initializable{
 	}
 	
 	private void checkBoja(Bojra bojra, Inventari inventari) throws SQLException {
-		if(ControlDAO.getControlDao().getFurnizimDao().checkBojaInventar(bojra.getId())) {
-			System.out.println("je ktu");
+		if(ControlDAO.getControlDao().getFurnizimDao().checkBojaInventar(bojra.getId())) 
 			ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
-		}
+		
 		else
 			ControlDAO.getControlDao().getInventariDao().addGjendje(inventari);
 	}

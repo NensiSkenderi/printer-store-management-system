@@ -48,7 +48,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.Bojra;
 import model.Furnizim;
+import model.Inventari;
 import model.Shitje;
 import utils.HelperMethods;
 import utils.Utils;
@@ -59,7 +61,7 @@ public class ShitjetController extends VBox {
 	@FXML private JFXButton btnAdd, btnEdit, btnPdf, btnExcel;
 	@FXML private TableView<Shitje> tblShitjet;
 	@FXML private TableColumn<Shitje, String> tblColShitjeId, tblColLlojiFatures, tblColData,
-	tblColBoja, tblColKlienti, tblColSasia, tblColCmimi, tblColVlera, tblColArketuar;
+	tblColBoja, tblColKlienti, tblColSasia, tblColCmimi, tblColVlera, tblColArketuar, tblColLikujduar;
 	@FXML private TableColumn<Shitje, Shitje> tblColDelete;
 
 	private ObservableList<Shitje> tableViewData = FXCollections.observableArrayList();
@@ -127,7 +129,7 @@ public class ShitjetController extends VBox {
 		tblColShitjeId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tblColLlojiFatures.setCellValueFactory(new PropertyValueFactory<>("lloji_fatures"));
 		tblColData.setCellValueFactory(new PropertyValueFactory<>("created_date"));
-
+		tblColLikujduar.setCellValueFactory(new PropertyValueFactory<>("date_likujduar"));
 		tblColBoja.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
@@ -177,7 +179,7 @@ public class ShitjetController extends VBox {
 					konfirmo.setStyle("-fx-background-color: #0093DC; -fx-text-fill: white;-fx-cursor: hand;");
 					Utils.alert_fshirje(alert,"shitjen?", konfirmo, anullo, false, "");
 					konfirmo.setOnAction(e-> {
-						delete(sh.getId());
+						delete(sh.getId(), sh.getBojra_id(), sh.getSasia());
 						alert.close();
 					}); 
 					anullo.setOnAction( e1 -> {
@@ -354,9 +356,16 @@ public class ShitjetController extends VBox {
 		}
 	}
 
-	private void delete(int shitjeId) {
+	private void delete(int shitjeId, Bojra bojra, double sasia) {
 		try {
 			ControlDAO.getControlDao().getShitjeDao().deleteShitje(shitjeId);
+			double gjendjaVjeter = ControlDAO.getControlDao().getInventariDao().getGjendja(bojra);
+			Inventari inventari = new Inventari();
+			inventari.setBojra_id(bojra);
+			inventari.setGjendja(gjendjaVjeter + sasia);
+			
+			ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
+			
 			loadShitjet();
 		} catch (SQLException e) {
 			e.printStackTrace();

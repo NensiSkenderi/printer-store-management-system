@@ -21,7 +21,7 @@ public class ShitjeDao extends DAO {
 	public List<Shitje> getShitje() throws SQLException {
 		List<Shitje> data = new ArrayList<Shitje>();
 		String query = "select sh.lloji_fatures, sh.created_date, b.emri, b.id, " + 
-				"sh.sasia, sh.cmimi, k.klienti, k.id, sh.id, a.id, a.menyra " + 
+				"sh.sasia, sh.cmimi, k.klienti, k.id, sh.id, a.id, a.menyra, sh.date_likujduar " + 
 				"from toner.shitje sh join toner.bojra b " + 
 				"on sh.bojra_id = b.id join toner.arketuar a " + 
 				"on sh.arketim_id = a.id join toner.klient k " + 
@@ -52,6 +52,7 @@ public class ShitjeDao extends DAO {
 			shitje.setKlient_id(klient);
 			shitje.setId(rs.getInt(9));
 			shitje.setArketim_id(arketuar);
+			shitje.setDate_likujduar(rs.getDate(12));
 			
 			data.add(shitje);
 		}
@@ -64,7 +65,6 @@ public class ShitjeDao extends DAO {
 				"(lloji_fatures, klient_id, arketim_id, date_likujduar, bojra_id, sasia, cmimi)"
 				+ " VALUES (?,?,?,?,?,?,?)";
 		stm = connector.prepareStatement(insertBojra);
-
 		stm.setString(1, shitje.getLloji_fatures());
 		stm.setInt(2, shitje.getKlient_id().getId());
 		stm.setInt(3, shitje.getArketim_id().getId());
@@ -73,7 +73,7 @@ public class ShitjeDao extends DAO {
 		stm.setDouble(6, shitje.getSasia());
 		stm.setDouble(7, shitje.getCmimi());
 
-		stm.executeUpdate();
+		stm.execute();
 		stm.close();
 	}
 

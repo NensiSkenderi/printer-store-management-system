@@ -59,6 +59,8 @@ public class ShitjetShtoController implements Initializable{
 		cmbEmriBojes.setValue(sh.getBojra_id().getEmri());
 		cmbKlienti.setValue(sh.getKlient_id().getKlienti());
 		
+		checkLikujduar.setSelected(sh.getDate_likujduar() == null ? false : true);
+		
 	}
 
 	@FXML
@@ -87,26 +89,40 @@ public class ShitjetShtoController implements Initializable{
 		shitje.setSasia(Double.parseDouble(txtSasia.getText()));
 		if(checkLikujduar.isSelected())
 			shitje.setDate_likujduar(Date.valueOf(LocalDate.now()));
+		
 		shitje.setLloji_fatures(txtLlojiFatures.getText());
 		shitje.setVlera(shitje.getCmimi() * shitje.getSasia());
 		shitje.setArketim_id(arketuar);
 		shitje.setBojra_id(bojra);
 		shitje.setKlient_id(klient);
 		
-		if(shitjeId == 0)
-			ControlDAO.getControlDao().getShitjeDao().addShitje(shitje);
-		else
-			ControlDAO.getControlDao().getShitjeDao().updateShitje(shitje);
-		
 		Inventari inventari = new Inventari();
 		inventari.setBojra_id(bojra);
 		
 		double gjendjaVjeter = ControlDAO.getControlDao().getInventariDao().getGjendja(bojra);
-		inventari.setGjendja(gjendjaVjeter - shitje.getSasia());
 		
-		ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
+		if(shitjeId == 0) {
+			ControlDAO.getControlDao().getShitjeDao().addShitje(shitje);
+			inventari.setGjendja(gjendjaVjeter - shitje.getSasia());
+			checkBoja(bojra, inventari);
+		}
+			
+		else {
+			ControlDAO.getControlDao().getShitjeDao().updateShitje(shitje);
+			inventari.setGjendja(gjendjaVjeter);
+			checkBoja(bojra, inventari);
+		}
+		
 		HelperMethods.closeStage(btnAnullo);
 
+	}
+	
+	private void checkBoja(Bojra bojra, Inventari inventari) throws SQLException {
+		if(ControlDAO.getControlDao().getFurnizimDao().checkBojaInventar(bojra.getId())) 
+			ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
+		
+		else
+			ControlDAO.getControlDao().getInventariDao().addGjendje(inventari);
 	}
 
 	@FXML

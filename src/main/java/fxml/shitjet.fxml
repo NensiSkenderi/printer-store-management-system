@@ -81,13 +81,14 @@
          <columns>
             <TableColumn fx:id="tblColShitjeId" prefWidth="673.0" text="Lloji i Fatures" visible="false" />
             <TableColumn fx:id="tblColLlojiFatures" prefWidth="673.0" text="Lloji i Fatures" />
-            <TableColumn fx:id="tblColData" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="Data" />
+            <TableColumn fx:id="tblColData" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Data" />
             <TableColumn fx:id="tblColBoja" prefWidth="84.0" text="Boja" />
             <TableColumn fx:id="tblColKlienti" prefWidth="84.0" text="Klienti" />
             <TableColumn fx:id="tblColSasia" prefWidth="84.0" text="Sasia" />
             <TableColumn fx:id="tblColCmimi" prefWidth="84.0" text="Cmimi" />
             <TableColumn fx:id="tblColVlera" prefWidth="84.0" text="Vlera" />
-            <TableColumn fx:id="tblColArketuar" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" resizable="false" text="Arketuar" />
+            <TableColumn fx:id="tblColArketuar" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" resizable="false" text="Pagesa" />
+            <TableColumn fx:id="tblColLikujduar" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Likujduar" />
             <TableColumn fx:id="tblColDelete" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" />
          </columns>
          <columnResizePolicy>
