@@ -27,11 +27,8 @@ DROP TABLE IF EXISTS `arketuar`;
 CREATE TABLE `arketuar` (
   `id` int NOT NULL AUTO_INCREMENT,
   `menyra` varchar(16) NOT NULL,
-  `klient_id` int NOT NULL,
   `created_date` date DEFAULT (curdate()),
-  PRIMARY KEY (`id`),
-  KEY `fk_arketuar_klient_idx` (`klient_id`),
-  CONSTRAINT `fk_arketuar_klient` FOREIGN KEY (`klient_id`) REFERENCES `klient` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,7 +38,7 @@ CREATE TABLE `arketuar` (
 
 LOCK TABLES `arketuar` WRITE;
 /*!40000 ALTER TABLE `arketuar` DISABLE KEYS */;
-INSERT INTO `arketuar` VALUES (1,'Kesh',1,'2020-09-27');
+INSERT INTO `arketuar` VALUES (1,'Kesh','2020-09-27');
 /*!40000 ALTER TABLE `arketuar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +57,7 @@ CREATE TABLE `bojra` (
   PRIMARY KEY (`id`),
   KEY `fk_bojra__idx` (`lloji_bojes_id`),
   CONSTRAINT `bojra_ibfk_1` FOREIGN KEY (`lloji_bojes_id`) REFERENCES `lloji_bojra` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +66,7 @@ CREATE TABLE `bojra` (
 
 LOCK TABLES `bojra` WRITE;
 /*!40000 ALTER TABLE `bojra` DISABLE KEYS */;
-INSERT INTO `bojra` VALUES (1,'HP-302 BK/COL','2020-09-27',2),(2,'HP-651 BK/COL','2020-09-27',2),(3,'MLT-111','2020-09-27',1);
+INSERT INTO `bojra` VALUES (1,'HP-302 BK/COL','2020-09-27',2),(2,'HP-651 BK/COL','2020-09-27',2),(3,'MLT-111','2020-09-27',1),(4,'ergi','2020-09-27',2);
 /*!40000 ALTER TABLE `bojra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +86,7 @@ CREATE TABLE `furnizim` (
   PRIMARY KEY (`id`),
   KEY `bojra_id` (`bojra_id`),
   CONSTRAINT `furnizim_ibfk_1` FOREIGN KEY (`bojra_id`) REFERENCES `bojra` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,8 +95,31 @@ CREATE TABLE `furnizim` (
 
 LOCK TABLES `furnizim` WRITE;
 /*!40000 ALTER TABLE `furnizim` DISABLE KEYS */;
-INSERT INTO `furnizim` VALUES (1,1,12,20,'2020-09-27');
 /*!40000 ALTER TABLE `furnizim` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `inventari`
+--
+
+DROP TABLE IF EXISTS `inventari`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inventari` (
+  `bojra_id` int NOT NULL,
+  `gjendja` double NOT NULL,
+  KEY `bojra_id` (`bojra_id`),
+  CONSTRAINT `inventari_ibfk_1` FOREIGN KEY (`bojra_id`) REFERENCES `bojra` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventari`
+--
+
+LOCK TABLES `inventari` WRITE;
+/*!40000 ALTER TABLE `inventari` DISABLE KEYS */;
+/*!40000 ALTER TABLE `inventari` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -125,7 +145,7 @@ CREATE TABLE `klient` (
 
 LOCK TABLES `klient` WRITE;
 /*!40000 ALTER TABLE `klient` DISABLE KEYS */;
-INSERT INTO `klient` VALUES (1,'Nensi','A12345678A','2020-09-27',NULL),(2,'Ergi','A12345678B','2020-09-27',NULL),(3,'test','tert','2020-09-27','069');
+INSERT INTO `klient` VALUES (1,'Nensi','A12345678A','2020-09-27',NULL),(2,'Ergi','A12345678B','2020-09-27','lknk'),(3,'test','tert','2020-09-27','069');
 /*!40000 ALTER TABLE `klient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,8 +190,7 @@ CREATE TABLE `shitje` (
   `bojra_id` int NOT NULL,
   `sasia` double DEFAULT NULL,
   `cmimi` double DEFAULT NULL,
-  `deleted` tinyint DEFAULT NULL,
-  `shitjecol` varchar(45) DEFAULT '0',
+  `deleted` tinyint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `klient_id` (`klient_id`),
   KEY `arketim_id` (`arketim_id`),
@@ -186,7 +205,6 @@ CREATE TABLE `shitje` (
 
 LOCK TABLES `shitje` WRITE;
 /*!40000 ALTER TABLE `shitje` DISABLE KEYS */;
-INSERT INTO `shitje` VALUES (1,'TVSH',2,'2020-09-27',1,NULL,2,20,15,0,'0');
 /*!40000 ALTER TABLE `shitje` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -199,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-27 23:13:16
+-- Dump completed on 2020-09-30 19:18:55
