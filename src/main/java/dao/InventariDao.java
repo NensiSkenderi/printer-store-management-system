@@ -66,6 +66,14 @@ public class InventariDao extends DAO {
 		stm.close();
 	}
 
-
+	public double getGjendja(Bojra bojra) throws SQLException {
+		String sql_query = "select gjendja from toner.inventari where bojra_id = '"+bojra.getId()+"'";
+		stm = connector.prepareStatement(sql_query);
+		rs = stm.executeQuery(sql_query);
+		
+		while(rs.next()) 
+			return rs.getDouble(1);
+		return 0;
+	}
 
 }

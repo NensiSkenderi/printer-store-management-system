@@ -67,4 +67,29 @@ public class KlientDao extends DAO {
 		stm.executeUpdate();
 		stm.close();
 	}
+	
+	public List<String> getKlientet() throws SQLException{
+		List<String> data = new ArrayList<>();
+		String query = "Select klienti from toner.klient ORDER BY klienti;";
+		
+		stm = connector.prepareStatement(query);
+		rs = stm.executeQuery(query);
+		
+		while(rs.next()) {
+			String kategori = rs.getString(1);
+			data.add(kategori);
+		}
+		
+		return data;
+	}
+	
+	public int getIdFromKlienti(String klienti) throws Exception {
+		String sql_query = "select id,klienti from toner.klient where klienti = '"+klienti+"'";
+		stm = connector.prepareStatement(sql_query);
+		rs = stm.executeQuery(sql_query);
+		
+		while(rs.next()) 
+			return rs.getInt(1);
+		return 0;
+	}
 }

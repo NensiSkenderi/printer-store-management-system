@@ -42,11 +42,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.Furnizim;
 import model.Shitje;
 import utils.HelperMethods;
 import utils.Utils;
@@ -194,32 +196,33 @@ public class ShitjetController extends VBox {
 	@FXML
 	private void add() throws IOException, SQLException {
 		edit = false;
-		//new Utils().open_edit_scene("perdoruesitShto", "user");
+		new Utils().openEditScene("shitjeShto", "sales");
 		loadShitjet();
 	}
 
 	@FXML
 	private void edit() throws IOException, SQLException {
 		edit = true;
-		//		if(tblShitjet.getSelectionModel().getSelectedItem() != null) {
-		//			getData();
-		//		}
-		//
-		//		else
-		//			Utils.alerti("Kujdes!", "Zgjidh nje rresht nga tabela!", AlertType.WARNING);
+		if(tblShitjet.getSelectionModel().getSelectedItem() != null) 
+			getData();
+		else
+			Utils.alerti("Kujdes!", "Zgjidh nje rresht nga tabela!", AlertType.WARNING);
 	}
-
+	
 	private void getData() throws IOException, SQLException {
-		//		perdoruesit perdoruesit = tblShitjet.getSelectionModel().getSelectedItem();
-		//		perdoruesitDataHolder.setName(perdoruesit.getName());
-		//		perdoruesitDataHolder.setSurname(perdoruesit.getSurname());
-		//		perdoruesitDataHolder.setUsername(perdoruesit.getUsername());
-		//		perdoruesitDataHolder.setPassword(perdoruesit.getPassword());
-		//		perdoruesitDataHolder.setTelefon(perdoruesit.getTelefon());
-		//		perdoruesitDataHolder.setEmail(perdoruesit.getEmail());
-		//		perdoruesitDataHolder.setAccess(perdoruesit.getAccess());
-		//		perdoruesitDataHolder.setUserid(perdoruesit.getUserid());
-		//		new Utils().open_edit_scene("perdoruesitShto", "user");
+		Shitje shitje = tblShitjet.getSelectionModel().getSelectedItem();
+		shitjeDataHolder.setId(shitje.getId());
+		shitjeDataHolder.setArketim_id(shitje.getArketim_id());
+		shitjeDataHolder.setBojra_id(shitje.getBojra_id());
+		shitjeDataHolder.setCmimi(shitje.getCmimi());
+		shitjeDataHolder.setDate_likujduar(shitje.getDate_likujduar());
+		shitjeDataHolder.setKlient_id(shitje.getKlient_id());
+		shitjeDataHolder.setLloji_fatures(shitje.getLloji_fatures());
+		shitjeDataHolder.setSasia(shitje.getSasia());
+		shitjeDataHolder.setVlera(shitje.getVlera());
+		
+
+		new Utils().openEditScene("shitjeShto", "sales");
 		loadShitjet();
 	}
 
@@ -351,9 +354,9 @@ public class ShitjetController extends VBox {
 		}
 	}
 
-	private void delete(int perdoruesitid) {
+	private void delete(int shitjeId) {
 		try {
-			//ControlDAO.getControlDao().getPerdoruesitDao().deletePerdoruesit(perdoruesitid);
+			ControlDAO.getControlDao().getShitjeDao().deleteShitje(shitjeId);
 			loadShitjet();
 		} catch (SQLException e) {
 			e.printStackTrace();

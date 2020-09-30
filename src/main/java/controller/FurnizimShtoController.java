@@ -15,7 +15,6 @@ import javafx.scene.control.Label;
 import model.Bojra;
 import model.Furnizim;
 import model.Inventari;
-import model.Klient;
 import utils.Combo;
 import utils.HelperMethods;
 
@@ -71,22 +70,30 @@ public class FurnizimShtoController implements Initializable{
 		
 		Inventari inventari = new Inventari();
 		inventari.setBojra_id(bojra);
-		inventari.setGjendja(furnizim.getSasia());
+		
+		double gjendjaVjeter = ControlDAO.getControlDao().getInventariDao().getGjendja(bojra);
+		inventari.setGjendja(gjendjaVjeter + furnizim.getSasia());
 		
 		if(furnizimId == 0) {
 			ControlDAO.getControlDao().getFurnizimDao().addFurnizim(furnizim);
-			if(ControlDAO.getControlDao().getFurnizimDao().checkBoja(bojra.getId()))
-				ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
-			else
-				ControlDAO.getControlDao().getInventariDao().addGjendje(inventari);
+			checkBoja(bojra, inventari);
 		}
 		else {
 			ControlDAO.getControlDao().getFurnizimDao().updateFurnizim(furnizim);
-			ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
+			checkBoja(bojra, inventari);
 		}
 		
 		HelperMethods.closeStage(btnAnullo);
 		
+	}
+	
+	private void checkBoja(Bojra bojra, Inventari inventari) throws SQLException {
+		if(ControlDAO.getControlDao().getFurnizimDao().checkBojaInventar(bojra.getId())) {
+			System.out.println("je ktu");
+			ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
+		}
+		else
+			ControlDAO.getControlDao().getInventariDao().addGjendje(inventari);
 	}
 	
 	@FXML

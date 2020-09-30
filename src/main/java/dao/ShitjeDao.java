@@ -58,5 +58,52 @@ public class ShitjeDao extends DAO {
 		
 		return data;
 	}
+	
+	public void addShitje(Shitje shitje) throws SQLException {
+		String insertBojra = "INSERT INTO toner.shitje " + 
+				"(lloji_fatures, klient_id, arketim_id, date_likujduar, bojra_id, sasia, cmimi)"
+				+ " VALUES (?,?,?,?,?,?,?)";
+		stm = connector.prepareStatement(insertBojra);
+
+		stm.setString(1, shitje.getLloji_fatures());
+		stm.setInt(2, shitje.getKlient_id().getId());
+		stm.setInt(3, shitje.getArketim_id().getId());
+		stm.setDate(4, shitje.getDate_likujduar());
+		stm.setInt(5, shitje.getBojra_id().getId());
+		stm.setDouble(6, shitje.getSasia());
+		stm.setDouble(7, shitje.getCmimi());
+
+		stm.executeUpdate();
+		stm.close();
+	}
+
+	public void updateShitje(Shitje shitje) throws SQLException {
+		String update = "UPDATE toner.shitje SET lloji_fatures = ?, klient_id = ?, arketim_id = ?, date_likujduar = ?, "
+				+ "bojra_id = ?, sasia = ?, cmimi = ?  WHERE id = ?";
+		stm = connector.prepareStatement(update);
+
+		stm.setString(1, shitje.getLloji_fatures());
+		stm.setInt(2, shitje.getKlient_id().getId());
+		stm.setInt(3, shitje.getArketim_id().getId());
+		stm.setDate(4, shitje.getDate_likujduar());
+		stm.setInt(5, shitje.getBojra_id().getId());
+		stm.setDouble(6, shitje.getSasia());
+		stm.setDouble(7, shitje.getCmimi());
+		
+		stm.setInt(8, shitje.getId());
+
+		stm.executeUpdate();
+		stm.close();
+	}
+	
+	public void deleteShitje(int id) throws SQLException {
+		String query = "DELETE FROM toner.shitje where id=?";
+		stm = connector.prepareStatement(query);
+		stm.setInt(1, id);
+
+		stm.execute();
+		stm.close();
+		
+	}
 
 }

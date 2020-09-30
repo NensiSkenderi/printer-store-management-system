@@ -89,11 +89,11 @@ public class FurnizimDao extends DAO {
 		return 0;
 	}
 	
-	public boolean checkBoja(int bojaId) throws SQLException {
-		String query = "select * from toner.bojra where id = '"+bojaId+"'";
+	public boolean checkBojaInventar(int bojaId) throws SQLException {
+		String query = "select * from toner.inventari where bojra_id = '"+bojaId+"'";
 		stm = connector.prepareStatement(query);
 		rs = stm.executeQuery();
-		if(rs.next() == false)
+		if(rs.next() == true)
 			return true;
 		else 
 			return false;
