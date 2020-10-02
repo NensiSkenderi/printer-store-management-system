@@ -29,7 +29,7 @@ CREATE TABLE `arketuar` (
   `menyra` varchar(16) NOT NULL,
   `created_date` date DEFAULT (curdate()),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `arketuar` (
 
 LOCK TABLES `arketuar` WRITE;
 /*!40000 ALTER TABLE `arketuar` DISABLE KEYS */;
-INSERT INTO `arketuar` VALUES (1,'Kesh','2020-09-27');
+INSERT INTO `arketuar` VALUES (0,'X','2020-09-30'),(1,'Kesh','2020-09-27');
 /*!40000 ALTER TABLE `arketuar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `furnizim` (
   PRIMARY KEY (`id`),
   KEY `bojra_id` (`bojra_id`),
   CONSTRAINT `furnizim_ibfk_1` FOREIGN KEY (`bojra_id`) REFERENCES `bojra` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `klient` (
 
 LOCK TABLES `klient` WRITE;
 /*!40000 ALTER TABLE `klient` DISABLE KEYS */;
-INSERT INTO `klient` VALUES (1,'Nensi','A12345678A','2020-09-27',NULL),(2,'Ergi','A12345678B','2020-09-27','lknk'),(3,'test','tert','2020-09-27','069');
+INSERT INTO `klient` VALUES (1,'Nensi','A12345678A','2020-09-27','544'),(2,'Ergi','A12345678B','2020-09-27','lknk'),(3,'test','tert','2020-09-27','069');
 /*!40000 ALTER TABLE `klient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +196,7 @@ CREATE TABLE `shitje` (
   KEY `arketim_id` (`arketim_id`),
   CONSTRAINT `shitje_ibfk_1` FOREIGN KEY (`klient_id`) REFERENCES `klient` (`id`),
   CONSTRAINT `shitje_ibfk_2` FOREIGN KEY (`arketim_id`) REFERENCES `arketuar` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-30 19:18:55
+-- Dump completed on 2020-10-02 18:11:34
