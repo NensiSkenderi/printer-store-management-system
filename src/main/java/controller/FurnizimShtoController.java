@@ -26,6 +26,7 @@ public class FurnizimShtoController implements Initializable{
 	@FXML private JFXComboBox<String> cmbEmriBojes;
 	
 	private int furnizimId = 0;
+	private double sasiaVjeter = 0;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -49,6 +50,7 @@ public class FurnizimShtoController implements Initializable{
 		cmbEmriBojes.setValue(f.getBojra_id().getEmri());
 		txtSasia.setText(f.getSasia() + "");
 		txtCmimi.setText(f.getCmimi() + "");
+		sasiaVjeter = Double.parseDouble(txtSasia.getText());
 	}
 	
 	@FXML
@@ -80,7 +82,7 @@ public class FurnizimShtoController implements Initializable{
 		}
 		else {
 			ControlDAO.getControlDao().getFurnizimDao().updateFurnizim(furnizim);
-			inventari.setGjendja(gjendjaVjeter);
+			inventari.setGjendja(gjendjaVjeter + furnizim.getSasia() - sasiaVjeter);
 			checkBoja(bojra, inventari);
 		}
 		

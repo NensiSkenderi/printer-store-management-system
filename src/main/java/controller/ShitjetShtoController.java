@@ -32,10 +32,14 @@ public class ShitjetShtoController implements Initializable{
 	@FXML private JFXCheckBox checkLikujduar;
 
 	private int shitjeId = 0;
-
+	private double sasiaVjeter = 0;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
+			HelperMethods.makeTextfieldDecimal(txtCmimi);
+			HelperMethods.makeTextfieldDecimal(txtSasia);
+			
 			Combo.populate_combo(cmbArketimi, ControlDAO.getControlDao().getArketimDao().getArketimet());
 			Combo.populate_combo(cmbEmriBojes, ControlDAO.getControlDao().getBojraDao().getEmriBojes());
 			Combo.populate_combo(cmbKlienti, ControlDAO.getControlDao().getKlientDao().getKlientet());
@@ -60,7 +64,7 @@ public class ShitjetShtoController implements Initializable{
 		cmbKlienti.setValue(sh.getKlient_id().getKlienti());
 		
 		checkLikujduar.setSelected(sh.getDate_likujduar() == null ? false : true);
-		
+		sasiaVjeter = Double.parseDouble(txtSasia.getText());
 	}
 
 	@FXML
@@ -88,7 +92,7 @@ public class ShitjetShtoController implements Initializable{
 		shitje.setCmimi(Double.parseDouble(txtCmimi.getText()));
 		shitje.setSasia(Double.parseDouble(txtSasia.getText()));
 		if(checkLikujduar.isSelected())
-			shitje.setDate_likujduar(Date.valueOf(LocalDate.now()));
+			shitje.setDate_likujduar(new java.util.Date());
 		
 		shitje.setLloji_fatures(txtLlojiFatures.getText());
 		shitje.setVlera(shitje.getCmimi() * shitje.getSasia());
@@ -109,7 +113,7 @@ public class ShitjetShtoController implements Initializable{
 			
 		else {
 			ControlDAO.getControlDao().getShitjeDao().updateShitje(shitje);
-			inventari.setGjendja(gjendjaVjeter);
+			inventari.setGjendja(gjendjaVjeter - shitje.getSasia() + sasiaVjeter);
 			checkBoja(bojra, inventari);
 		}
 		

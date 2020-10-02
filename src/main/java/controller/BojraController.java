@@ -102,7 +102,7 @@ public class BojraController extends VBox {
 				ObservableList<TableColumn<Bojra, ?>> cols = tblBojra.getColumns();
 
 				for(int i=0; i<tableViewData.size(); i++) {
-					for(int j=1; j<4; j++) { //shife kte ktu kur tmbushesh klientin
+					for(int j= 1; j < cols.size(); j++) { //shife kte ktu kur tmbushesh klientin
 						TableColumn<Bojra, ?> col = cols.get(j);
 						String cellValue = col.getCellData(tableViewData.get(i)).toString();
 						cellValue = cellValue.toLowerCase();

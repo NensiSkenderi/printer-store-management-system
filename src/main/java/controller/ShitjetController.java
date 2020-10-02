@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -26,9 +27,11 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 
 import dao.ControlDAO;
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -49,7 +52,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Bojra;
-import model.Furnizim;
 import model.Inventari;
 import model.Shitje;
 import utils.HelperMethods;
@@ -57,12 +59,19 @@ import utils.Utils;
 
 public class ShitjetController extends VBox {
 
-	@FXML private JFXTextField txtSearch;
-	@FXML private JFXButton btnAdd, btnEdit, btnPdf, btnExcel;
-	@FXML private TableView<Shitje> tblShitjet;
-	@FXML private TableColumn<Shitje, String> tblColShitjeId, tblColLlojiFatures, tblColData,
-	tblColBoja, tblColKlienti, tblColSasia, tblColCmimi, tblColVlera, tblColArketuar, tblColLikujduar;
-	@FXML private TableColumn<Shitje, Shitje> tblColDelete;
+	@FXML
+	private JFXTextField txtSearch;
+	@FXML
+	private JFXButton btnAdd, btnEdit, btnPdf, btnExcel;
+	@FXML
+	private TableView<Shitje> tblShitjet;
+	@FXML
+	private TableColumn<Shitje, String> tblColShitjeId, tblColLlojiFatures, tblColData, tblColBoja, tblColKlienti,
+	tblColSasia, tblColCmimi, tblColVlera, tblColArketuar, tblColLikujduar;
+	@FXML
+	private TableColumn<Shitje, Shitje> tblColDelete;
+	@FXML 
+	private JFXDatePicker datePickerFrom, datePickerTo;
 
 	private ObservableList<Shitje> tableViewData = FXCollections.observableArrayList();
 
@@ -85,6 +94,9 @@ public class ShitjetController extends VBox {
 	@FXML
 	public void initialize() {
 		try {
+			HelperMethods.convertDatepicker(datePickerFrom, datePickerTo);
+			datePickerTo.setValue(LocalDate.now());
+			datePickerFrom.setValue(datePickerTo.getValue().minusDays(15));
 			loadShitjet();
 			searchTableview();
 		} catch (SQLException e) {
@@ -97,7 +109,7 @@ public class ShitjetController extends VBox {
 			@Override
 			public void invalidated(Observable o) {
 
-				if(txtSearch.textProperty().get().isEmpty()) {
+				if (txtSearch.textProperty().get().isEmpty()) {
 					tblShitjet.setItems(tableViewData);
 					return;
 				}
@@ -105,15 +117,15 @@ public class ShitjetController extends VBox {
 				ObservableList<Shitje> tableItems = FXCollections.observableArrayList();
 				ObservableList<TableColumn<Shitje, ?>> cols = tblShitjet.getColumns();
 
-				for(int i=0; i<tableViewData.size(); i++) {
-					for(int j=1; j<4; j++) { //shife kte ktu kur tmbushesh klientin
+				for (int i = 0; i < tableViewData.size(); i++) {
+					for (int j = 1; j < cols.size(); j++) { // shife kte ktu kur tmbushesh klientin
 						TableColumn<Shitje, ?> col = cols.get(j);
 						String cellValue = col.getCellData(tableViewData.get(i)).toString();
 						cellValue = cellValue.toLowerCase();
-						if(cellValue.contains(txtSearch.textProperty().get().toLowerCase())) {
+						if (cellValue.contains(txtSearch.textProperty().get().toLowerCase())) {
 							tableItems.add(tableViewData.get(i));
 							break;
-						}                        
+						}
 					}
 				}
 
@@ -124,32 +136,35 @@ public class ShitjetController extends VBox {
 
 	private void loadShitjet() throws SQLException {
 		tblShitjet.getItems().clear();
-		tableViewData.addAll(ControlDAO.getControlDao().getShitjeDao().getShitje());	
+		tableViewData.addAll(ControlDAO.getControlDao().getShitjeDao().getShitje(datePickerFrom.getValue(), datePickerTo.getValue()));	
 
 		tblColShitjeId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tblColLlojiFatures.setCellValueFactory(new PropertyValueFactory<>("lloji_fatures"));
 		tblColData.setCellValueFactory(new PropertyValueFactory<>("created_date"));
 		tblColLikujduar.setCellValueFactory(new PropertyValueFactory<>("date_likujduar"));
-		tblColBoja.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
-				return new SimpleStringProperty(obj.getValue().getBojra_id().getEmri());
-			}
-		});
-		
-		tblColArketuar.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
-				return new SimpleStringProperty(obj.getValue().getArketim_id().getMenyra());
-			}
-		});
-		
-		tblColKlienti.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
-				return new SimpleStringProperty(obj.getValue().getKlient_id().getKlienti());
-			}
-		});
+		tblColBoja.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
+						return new SimpleStringProperty(obj.getValue().getBojra_id().getEmri());
+					}
+				});
+
+		tblColArketuar.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
+						return new SimpleStringProperty(obj.getValue().getArketim_id().getMenyra());
+					}
+				});
+
+		tblColKlienti.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Shitje, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TableColumn.CellDataFeatures<Shitje, String> obj) {
+						return new SimpleStringProperty(obj.getValue().getKlient_id().getKlienti());
+					}
+				});
 
 		tblColSasia.setCellValueFactory(new PropertyValueFactory<>("sasia"));
 		tblColCmimi.setCellValueFactory(new PropertyValueFactory<>("cmimi"));
@@ -160,6 +175,7 @@ public class ShitjetController extends VBox {
 		tblColDelete.setCellFactory(param -> new TableCell<Shitje, Shitje>() {
 
 			Button delete = new Button("");
+
 			protected void updateItem(Shitje sh, boolean empty) {
 				super.updateItem(sh, empty);
 
@@ -177,19 +193,18 @@ public class ShitjetController extends VBox {
 					anullo.setStyle("-fx-background-color: #DA251E; -fx-text-fill: white;-fx-cursor: hand;");
 					JFXButton konfirmo = new JFXButton("Konfirmo");
 					konfirmo.setStyle("-fx-background-color: #0093DC; -fx-text-fill: white;-fx-cursor: hand;");
-					Utils.alert_fshirje(alert,"shitjen?", konfirmo, anullo, false, "");
-					konfirmo.setOnAction(e-> {
+					Utils.alert_fshirje(alert, "shitjen?", konfirmo, anullo, false, "");
+					konfirmo.setOnAction(e -> {
 						delete(sh.getId(), sh.getBojra_id(), sh.getSasia());
 						alert.close();
-					}); 
-					anullo.setOnAction( e1 -> {
+					});
+					anullo.setOnAction(e1 -> {
 						alert.close();
 					});
 					HelperMethods.refresh_focus_table(tblShitjet);
 				});
 			}
 		});
-
 
 		tblShitjet.setItems(tableViewData);
 
@@ -205,12 +220,12 @@ public class ShitjetController extends VBox {
 	@FXML
 	private void edit() throws IOException, SQLException {
 		edit = true;
-		if(tblShitjet.getSelectionModel().getSelectedItem() != null) 
+		if (tblShitjet.getSelectionModel().getSelectedItem() != null)
 			getData();
 		else
 			Utils.alerti("Kujdes!", "Zgjidh nje rresht nga tabela!", AlertType.WARNING);
 	}
-	
+
 	private void getData() throws IOException, SQLException {
 		Shitje shitje = tblShitjet.getSelectionModel().getSelectedItem();
 		shitjeDataHolder.setId(shitje.getId());
@@ -222,7 +237,6 @@ public class ShitjetController extends VBox {
 		shitjeDataHolder.setLloji_fatures(shitje.getLloji_fatures());
 		shitjeDataHolder.setSasia(shitje.getSasia());
 		shitjeDataHolder.setVlera(shitje.getVlera());
-		
 
 		new Utils().openEditScene("shitjeShto", "sales");
 		loadShitjet();
@@ -232,7 +246,7 @@ public class ShitjetController extends VBox {
 	private void excel() {
 		try {
 
-			Stage stage = (Stage)btnExcel.getScene().getWindow();
+			Stage stage = (Stage) btnExcel.getScene().getWindow();
 
 			FileChooser fileChooser = new FileChooser();
 			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Comma Delimited (*.csv)", "*.csv");
@@ -242,14 +256,18 @@ public class ShitjetController extends VBox {
 			FileWriter fileWriter = new FileWriter(file);
 
 			String text = "";
-			String header = "Nr" + "," + "Perdoruesi" + "," + "Emri" + "," + "Mbiemri"  + "," + "Te drejtat" + "," + "Telefon" + "," + "Email" +"\n" ;
+			String header = "Nr" + "," + "Lloji i Fatures" + "," + "Data" + "," + "Boja" + "," + "Klienti" + ","
+					+ "Sasia" + "," + "Cmimi" + "," + "Vlera" + "," + "Pagesa" + "," + "Likujduar" + "\n";
 
 			fileWriter.write(header);
-			for(int i=0; i<tableViewData.size(); i++){
-
-				//				text = i+1 + "," + tableViewData.get(i).getUsername()+ "," + tableViewData.get(i).getName()+ "," + tableViewData.get(i).getSurname()+ "," 
-				//				+ tableViewData.get(i).getAccess() + "," + tableViewData.get(i).getTelefon()+ "," + tableViewData.get(i).getEmail() + "\n";
-				//				fileWriter.write(text);
+			for (int i = 0; i < tableViewData.size(); i++) {
+				text = i + 1 + "," + tableViewData.get(i).getLloji_fatures() + ","
+						+ tableViewData.get(i).getCreated_date() + "," + tableViewData.get(i).getBojra_id().getEmri()
+						+ "," + tableViewData.get(i).getKlient_id().getKlienti() + "," + tableViewData.get(i).getSasia()
+						+ "," + tableViewData.get(i).getCmimi() + "," + tableViewData.get(i).getVlera() + ","
+						+ tableViewData.get(i).getArketim_id().getMenyra() + ","
+						+ tableViewData.get(i).getDate_likujduar() + "\n";
+				fileWriter.write(text);
 			}
 
 			fileWriter.close();
@@ -263,16 +281,17 @@ public class ShitjetController extends VBox {
 	private void pdf() {
 		try {
 
-			Stage stage = (Stage)btnExcel.getScene().getWindow();
+			Stage stage = (Stage) btnExcel.getScene().getWindow();
 
 			FileChooser fileChooser = new FileChooser();
-			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF (*.PDF, *.pdf)", "*.pdf","*.PDF");
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF (*.PDF, *.pdf)", "*.pdf",
+					"*.PDF");
 			fileChooser.getExtensionFilters().add(extFilter);
 
 			File file = fileChooser.showSaveDialog(stage);
 
 			Document document = new Document(PageSize.A4.rotate(), 5f, 5f, 5f, 5f);
-			PdfWriter writer = PdfWriter.getInstance(document,new FileOutputStream(file.getAbsolutePath()));
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file.getAbsolutePath()));
 
 			document.open();
 
@@ -281,7 +300,7 @@ public class ShitjetController extends VBox {
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
-			Anchor anchorTarget = new Anchor("Data "+dateFormat.format(date) + " Ora " + sdf.format(cal.getTime()));
+			Anchor anchorTarget = new Anchor("Data " + dateFormat.format(date) + " Ora " + sdf.format(cal.getTime()));
 
 			Paragraph paragraph1 = new Paragraph();
 			paragraph1.setAlignment(Paragraph.ALIGN_RIGHT);
@@ -291,55 +310,71 @@ public class ShitjetController extends VBox {
 			paragraph1.add(anchorTarget);
 			document.add(paragraph1);
 
-			Paragraph p2 = new Paragraph("Denas Power Management",FontFactory.getFont(FontFactory.TIMES, 18, Font.BOLD, new CMYKColor(169,169,169,0)));
+			Paragraph p2 = new Paragraph("Refill Plus",
+					FontFactory.getFont(FontFactory.TIMES, 18, Font.BOLD, new CMYKColor(169, 169, 169, 0)));
 			p2.setAlignment(Paragraph.ALIGN_CENTER);
-			p2.setSpacingBefore(20);		
+			p2.setSpacingBefore(20);
 			document.add(p2);
-
-			Paragraph p3 = new Paragraph("Karburanti",FontFactory.getFont(FontFactory.TIMES, 14, Font.BOLD, new BaseColor(183, 70, 54)));
+			Paragraph p3 = new Paragraph("Shitjet",
+					FontFactory.getFont(FontFactory.TIMES, 14, Font.BOLD, new BaseColor(183, 70, 54)));
 			p3.setAlignment(Paragraph.ALIGN_CENTER);
-			p3.setSpacingBefore(25);		
+			p3.setSpacingBefore(25);
 			document.add(p3);
 
-			PdfPTable t = new PdfPTable(6);
+			PdfPTable t = new PdfPTable(9);
 			t.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
 			t.setSpacingBefore(30);
 			t.setWidthPercentage(95);
 			t.setSpacingAfter(5);
 			Font bold = new Font(FontFamily.HELVETICA, 14, Font.BOLD);
 
-			Phrase phrase1 = new Phrase("Perdoruesi", bold);
+			Phrase phrase1 = new Phrase("Lloji i Fatures", bold);
 			PdfPCell c1 = new PdfPCell(phrase1);
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			t.addCell(c1);
-			Phrase phrase2 = new Phrase("Emri", bold);
+			Phrase phrase2 = new Phrase("Data", bold);
 			PdfPCell c2 = new PdfPCell(phrase2);
 			c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 			t.addCell(c2);
-			Phrase phrase3 = new Phrase("Mbiemri", bold);
+			Phrase phrase3 = new Phrase("Boja", bold);
 			PdfPCell c3 = new PdfPCell(phrase3);
 			c3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			t.addCell(c3);
-			Phrase phrase4 = new Phrase("Te drejtat", bold);
+			Phrase phrase4 = new Phrase("Klienti", bold);
 			PdfPCell c4 = new PdfPCell(phrase4);
 			c4.setHorizontalAlignment(Element.ALIGN_CENTER);
 			t.addCell(c4);
-			Phrase phrase5 = new Phrase("Telefon", bold);
+			Phrase phrase5 = new Phrase("Sasia", bold);
 			PdfPCell c5 = new PdfPCell(phrase5);
 			c5.setHorizontalAlignment(Element.ALIGN_CENTER);
 			t.addCell(c5);
-			Phrase phrase6 = new Phrase("Email", bold);
+			Phrase phrase6 = new Phrase("Cmimi", bold);
 			PdfPCell c6 = new PdfPCell(phrase6);
 			c6.setHorizontalAlignment(Element.ALIGN_CENTER);
 			t.addCell(c6);
+			Phrase phrase7 = new Phrase("Vlera", bold);
+			PdfPCell c7 = new PdfPCell(phrase7);
+			c6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			t.addCell(c7);
+			Phrase phrase8 = new Phrase("Pagesa", bold);
+			PdfPCell c8 = new PdfPCell(phrase8);
+			c6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			t.addCell(c8);
+			Phrase phrase9 = new Phrase("Likujduar", bold);
+			PdfPCell c9 = new PdfPCell(phrase9);
+			c6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			t.addCell(c9);
 
-			for(Shitje table_pdf : tableViewData){
-				//				t.addCell(table_pdf.getUsername());
-				//				t.addCell(table_pdf.getName());
-				//				t.addCell(table_pdf.getSurname());
-				//				t.addCell(table_pdf.getAccess());
-				//				t.addCell(table_pdf.getTelefon());
-				//				t.addCell(table_pdf.getEmail());
+			for (Shitje tablePdf : tableViewData) {
+				t.addCell(tablePdf.getLloji_fatures());
+				t.addCell(tablePdf.getCreated_date().toString());
+				t.addCell(tablePdf.getBojra_id().getEmri());
+				t.addCell(tablePdf.getKlient_id().getKlienti());
+				t.addCell(String.valueOf(tablePdf.getSasia()));
+				t.addCell(String.valueOf(tablePdf.getCmimi()));
+				t.addCell(String.valueOf(tablePdf.getVlera()));
+				t.addCell(tablePdf.getArketim_id().getMenyra());
+				t.addCell(tablePdf.getDate_likujduar().toString());
 
 			}
 			document.add(t);
@@ -359,20 +394,31 @@ public class ShitjetController extends VBox {
 	private void delete(int shitjeId, Bojra bojra, double sasia) {
 		try {
 			ControlDAO.getControlDao().getShitjeDao().deleteShitje(shitjeId);
-			double gjendjaVjeter = ControlDAO.getControlDao().getInventariDao().getGjendja(bojra);
-			Inventari inventari = new Inventari();
-			inventari.setBojra_id(bojra);
-			inventari.setGjendja(gjendjaVjeter + sasia);
-			
-			ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
-			
 			loadShitjet();
+			Platform.runLater(() ->{
+				double gjendjaVjeter;
+				try {
+					gjendjaVjeter = ControlDAO.getControlDao().getInventariDao().getGjendja(bojra);
+
+					Inventari inventari = new Inventari();
+					inventari.setBojra_id(bojra);
+					inventari.setGjendja(gjendjaVjeter + sasia);
+
+					ControlDAO.getControlDao().getInventariDao().updateGjendje(inventari);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			});
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-
+	@FXML
+	private void filterDate() throws SQLException {
+		loadShitjet();
+		searchTableview();
+	}
 
 }

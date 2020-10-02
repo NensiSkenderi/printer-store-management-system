@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +19,15 @@ public class ShitjeDao extends DAO {
 	
 	public DecimalFormat decimalFormat = new DecimalFormat("#.##");
 	
-	public List<Shitje> getShitje() throws SQLException {
+	public List<Shitje> getShitje(LocalDate date_from, LocalDate date_to) throws SQLException {
 		List<Shitje> data = new ArrayList<Shitje>();
 		String query = "select sh.lloji_fatures, sh.created_date, b.emri, b.id, " + 
 				"sh.sasia, sh.cmimi, k.klienti, k.id, sh.id, a.id, a.menyra, sh.date_likujduar " + 
 				"from toner.shitje sh join toner.bojra b " + 
 				"on sh.bojra_id = b.id join toner.arketuar a " + 
 				"on sh.arketim_id = a.id join toner.klient k " + 
-				"on sh.klient_id = k.id where sh.deleted = 0";
+				"on sh.klient_id = k.id where sh.deleted = 0 " +
+				"and sh.created_date between '"+date_from+"' and '"+date_to+"' ";
 		stm = connector.prepareStatement(query);
 		rs = stm.executeQuery(query); 
 
@@ -64,11 +66,12 @@ public class ShitjeDao extends DAO {
 		String insertBojra = "INSERT INTO toner.shitje " + 
 				"(lloji_fatures, klient_id, arketim_id, date_likujduar, bojra_id, sasia, cmimi)"
 				+ " VALUES (?,?,?,?,?,?,?)";
+		
 		stm = connector.prepareStatement(insertBojra);
 		stm.setString(1, shitje.getLloji_fatures());
 		stm.setInt(2, shitje.getKlient_id().getId());
 		stm.setInt(3, shitje.getArketim_id().getId());
-		stm.setDate(4, shitje.getDate_likujduar());
+		stm.setDate(4, new java.sql.Date(shitje.getDate_likujduar().getTime()));
 		stm.setInt(5, shitje.getBojra_id().getId());
 		stm.setDouble(6, shitje.getSasia());
 		stm.setDouble(7, shitje.getCmimi());
@@ -85,7 +88,7 @@ public class ShitjeDao extends DAO {
 		stm.setString(1, shitje.getLloji_fatures());
 		stm.setInt(2, shitje.getKlient_id().getId());
 		stm.setInt(3, shitje.getArketim_id().getId());
-		stm.setDate(4, shitje.getDate_likujduar());
+		stm.setDate(4, new java.sql.Date(shitje.getDate_likujduar().getTime()));
 		stm.setInt(5, shitje.getBojra_id().getId());
 		stm.setDouble(6, shitje.getSasia());
 		stm.setDouble(7, shitje.getCmimi());

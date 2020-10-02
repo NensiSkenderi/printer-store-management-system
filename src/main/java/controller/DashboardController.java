@@ -15,9 +15,7 @@ public class DashboardController implements Initializable {
 	@FXML
 	private VBox mainVbox;
 
-	public void initialize(URL location, ResourceBundle resources) {
-		
-	}
+	public void initialize(URL location, ResourceBundle resources) {}
 
 	@FXML
 	public void klientController() {

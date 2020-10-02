@@ -6,7 +6,8 @@ public class Shitje {
 
 	private int id;
 	private String lloji_fatures;
-	private Date created_date, date_likujduar;
+	private Date created_date;
+	private java.util.Date date_likujduar;
 	private double sasia, cmimi, vlera;
 	private boolean deleted;
 	private Arketuar arketim_id;
@@ -15,7 +16,7 @@ public class Shitje {
 	
 	public Shitje() {}
 	
-	public Shitje(int id, String lloji_fatures, Date created_date, Date date_likujduar, double sasia, double cmimi,
+	public Shitje(int id, String lloji_fatures, Date created_date, java.util.Date date_likujduar, double sasia, double cmimi,
 			boolean deleted, Arketuar arketim_id, Bojra bojra_id, Klient klient_id) {
 		this.id = id;
 		this.lloji_fatures = lloji_fatures;
@@ -53,11 +54,11 @@ public class Shitje {
 		this.created_date = created_date;
 	}
 
-	public Date getDate_likujduar() {
+	public java.util.Date getDate_likujduar() {
 		return date_likujduar;
 	}
 
-	public void setDate_likujduar(Date date_likujduar) {
+	public void setDate_likujduar(java.util.Date date_likujduar) {
 		this.date_likujduar = date_likujduar;
 	}
 
