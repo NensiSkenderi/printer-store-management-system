@@ -71,7 +71,10 @@ public class ShitjeDao extends DAO {
 		stm.setString(1, shitje.getLloji_fatures());
 		stm.setInt(2, shitje.getKlient_id().getId());
 		stm.setInt(3, shitje.getArketim_id().getId());
-		stm.setDate(4, new java.sql.Date(shitje.getDate_likujduar().getTime()));
+		if(shitje.getDate_likujduar() == null)
+			stm.setDate(4, shitje.getEmptyDate());
+		else
+			stm.setDate(4, new java.sql.Date(shitje.getDate_likujduar().getTime()));
 		stm.setInt(5, shitje.getBojra_id().getId());
 		stm.setDouble(6, shitje.getSasia());
 		stm.setDouble(7, shitje.getCmimi());

@@ -118,7 +118,7 @@ public class ShitjetController extends VBox {
 				ObservableList<TableColumn<Shitje, ?>> cols = tblShitjet.getColumns();
 
 				for (int i = 0; i < tableViewData.size(); i++) {
-					for (int j = 1; j < cols.size(); j++) { // shife kte ktu kur tmbushesh klientin
+					for (int j = 1; j < cols.size(); j++) { 
 						TableColumn<Shitje, ?> col = cols.get(j);
 						String cellValue = col.getCellData(tableViewData.get(i)).toString();
 						cellValue = cellValue.toLowerCase();
