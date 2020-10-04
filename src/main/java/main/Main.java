@@ -17,15 +17,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {       
     	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
     	root=(Parent)loader.load();
     	
     	Scene scene = new Scene(root);
-    	primaryStage.setResizable(true);
+    	primaryStage.setResizable(false);
     	primaryStage.setScene(scene);
+    	primaryStage.centerOnScreen();
     	primaryStage.setTitle("Refill Plus");
     	primaryStage.getIcons().add(new Image("/images/logo_icon.png"));
-    	primaryStage.setMaximized(true);
     	primaryStage.show();
     }
 

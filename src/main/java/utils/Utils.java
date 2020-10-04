@@ -1,11 +1,14 @@
 package utils;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.binary.Base64;
 
 import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;
@@ -16,14 +19,17 @@ import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import dao.ControlDAO;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -36,6 +42,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Perdoruesit;
 
 public class Utils {
 
@@ -274,5 +281,119 @@ public class Utils {
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.showAndWait();
 		stage.setTitle(title);
+	}
+	
+	public static String encrypt(String key, String initVector, String value) {
+		try {
+			IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+			SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+
+			byte[] encrypted = cipher.doFinal(value.getBytes());
+
+			return Base64.encodeBase64String(encrypted);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	public static String decrypt(String key, String initVector, String encrypted) {
+		try {
+			IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+			SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+
+			byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
+
+			return new String(original);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	public static void build_change_password(VBox root, JFXButton btn) {
+		root.setEffect(new BoxBlur(5, 5, 5));
+		JFXAlert alert = new JFXAlert((Stage) btn.getScene().getWindow());
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.setOverlayClose(false);
+        JFXDialogLayout layout = new JFXDialogLayout();
+        layout.setHeading(new Label("Ndryshimi i passwordit ("+Utils.username+")"));
+        VBox txtfields = new VBox();
+        
+        Label lblError = new Label();
+        //hiqi kto setStyle veji tek css
+        lblError.setStyle("-fx-text-fill : #B74636");
+        txtfields.setMargin(lblError, new Insets(30, 0, 0, 0));
+        
+        JFXTextField existing_password = new JFXTextField();
+        existing_password.setPromptText("Passwordi aktual: *");
+        txtfields.setMargin(existing_password, new Insets(30, 0, 0, 0));
+        existing_password.setLabelFloat(true);
+        
+        JFXTextField new_password = new JFXTextField();
+        new_password.setPromptText("Passwordi i ri: *");
+        txtfields.setMargin(new_password, new Insets(50, 0, 50, 0));
+        new_password.setLabelFloat(true);
+        
+        JFXTextField repeat_new_password = new JFXTextField();
+        repeat_new_password.setPromptText("Perserit passwordin: *");
+        repeat_new_password.setLabelFloat(true);
+        
+        JFXButton change_pass = new JFXButton("Konfirmo");
+        change_pass.setStyle("-fx-background-color: #4186CE; -fx-text-fill: white;-fx-cursor: hand;");
+        change_pass.setDefaultButton(true);
+        
+        JFXButton goBack = new JFXButton("Anullo");
+        goBack.setStyle("-fx-background-color: #B74636;-fx-text-fill: white;-fx-cursor: hand;");
+        
+        txtfields.getChildren().addAll(existing_password,new_password,repeat_new_password, goBack, change_pass, lblError);
+       
+        layout.setBody(txtfields);
+        change_pass.setOnAction(e -> {
+        	 if(Utils.check_empty_text(existing_password.getText().toString(),new_password.getText().toString(),repeat_new_password.getText().toString())) {
+             	lblError.setText("Ju lutem plotesoni te gjitha fushat!*");
+             	return;
+             }
+        	 try {
+				if(!ControlDAO.getControlDao().getLoginDao().get_pass().equals(existing_password.getText().toString())) {
+					lblError.setText("Passwordi i vjet�r nuk �sht� i sakt�!"); 
+					return;
+				}
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+     		
+     		if (!new_password.getText().toString().equals(repeat_new_password.getText().toString())) {
+     			lblError.setText("Passwordi i ri nuk �sht� nj�soj!"); 
+     			return;
+     		}
+     		
+     		Perdoruesit p = new Perdoruesit();
+     		p.setPassword(new_password.getText().toString());
+     		try {
+				ControlDAO.getControlDao().getLoginDao().update_password(p);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+     		
+        	alert.hideWithAnimation();
+        	root.setEffect(null);
+        });
+        
+        goBack.setOnAction(e -> {
+        	alert.hideWithAnimation();
+        	root.setEffect(null);
+        });
+        layout.setActions(change_pass, goBack);
+        alert.setContent(layout);
+        alert.show();
 	}
 }

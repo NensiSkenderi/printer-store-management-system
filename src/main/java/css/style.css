@@ -13,6 +13,9 @@
      -fx-graphic: url("../images/submit.png");
 }
 
+.btnChangePassword {
+     -fx-graphic: url("../images/password-red.png");
+}
 
 
 .btnShitjet {
@@ -69,6 +72,17 @@
 
 .btnKlientet:focused {
      -fx-graphic: url("../images/clients-white.png");
+     -fx-background-color : #DA251E;
+     -fx-text-fill : white;
+}
+
+.btnPerdoruesit {
+	 -fx-background-color : white;
+     -fx-graphic: url("../images/perdoruesit.png");
+}
+
+.btnPerdoruesit:focused {
+     -fx-graphic: url("../images/perdoruesit-white.png");
      -fx-background-color : #DA251E;
      -fx-text-fill : white;
 }

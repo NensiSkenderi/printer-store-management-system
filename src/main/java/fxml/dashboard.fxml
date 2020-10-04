@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -22,12 +23,12 @@
                   </ImageView>
                </children>
             </HBox>
-            <VBox prefHeight="466.0" prefWidth="255.0" VBox.vgrow="ALWAYS">
+            <VBox fx:id="btnHolders" prefHeight="466.0" prefWidth="255.0" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
                <children>
-                  <JFXButton maxHeight="1.7976931348623157E308" onAction="#shitjetController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Shitjet" textFill="#DA251E" VBox.vgrow="ALWAYS">
+                  <JFXButton fx:id="btnShitjet" maxHeight="1.7976931348623157E308" onAction="#shitjetController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Shitjet" textFill="#DA251E" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
@@ -38,7 +39,7 @@
                         <String fx:value="btnShitjet" />
                         <String fx:value="btn" />
                      </styleClass></JFXButton>
-                  <JFXButton maxHeight="1.7976931348623157E308" onAction="#inventariController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Inventari" textFill="#DA251E" VBox.vgrow="ALWAYS">
+                  <JFXButton fx:id="btnInventari" maxHeight="1.7976931348623157E308" onAction="#inventariController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Inventari" textFill="#DA251E" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
@@ -49,7 +50,7 @@
                         <String fx:value="btnInventari" />
                         <String fx:value="btn" />
                      </styleClass></JFXButton>
-                  <JFXButton layoutX="10.0" layoutY="242.0" maxHeight="1.7976931348623157E308" onAction="#furnizimController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Furnizim" textFill="#DA251E">
+                  <JFXButton fx:id="btnFurnizim" layoutX="10.0" layoutY="242.0" maxHeight="1.7976931348623157E308" onAction="#furnizimController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Furnizim" textFill="#DA251E" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -61,7 +62,7 @@
                         <Insets bottom="16.0" />
                      </VBox.margin>
                   </JFXButton>
-                  <JFXButton layoutX="10.0" layoutY="372.0" maxHeight="1.7976931348623157E308" onAction="#bojraController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Bojra" textFill="#DA251E">
+                  <JFXButton fx:id="btnBojra" layoutX="10.0" layoutY="372.0" maxHeight="1.7976931348623157E308" onAction="#bojraController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Bojra" textFill="#DA251E" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -73,7 +74,7 @@
                         <Insets bottom="16.0" />
                      </VBox.margin>
                   </JFXButton>
-                  <JFXButton layoutX="10.0" layoutY="248.0" maxHeight="1.7976931348623157E308" onAction="#klientController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Klientet" textFill="#DA251E" VBox.vgrow="ALWAYS">
+                  <JFXButton fx:id="btnKlientet" layoutX="10.0" layoutY="248.0" maxHeight="1.7976931348623157E308" onAction="#klientController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Klientet" textFill="#DA251E" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -82,8 +83,17 @@
                         <String fx:value="btn" />
                      </styleClass>
                      <VBox.margin>
-                        <Insets />
+                        <Insets bottom="16.0" />
                      </VBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btnPerdoruesit" layoutX="10.0" layoutY="566.0" maxHeight="1.7976931348623157E308" onAction="#perdoruesitController" prefHeight="151.0" prefWidth="255.0" ripplerFill="WHITE" text="Perdoruesit" textFill="#DA251E" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnPerdoruesit" />
+                        <String fx:value="btn" />
+                     </styleClass>
                   </JFXButton>
                </children>
             </VBox>
@@ -93,6 +103,22 @@
          <children>
             <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="111.0" prefWidth="1035.0" style="-fx-background-color: white; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: #DA251E;">
                <children>
+                  <Label fx:id="lblWelcome" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textAlignment="CENTER" textFill="#da251e" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="16.0" top="16.0" />
+                     </HBox.margin>
+                  </Label>
+                  <JFXButton fx:id="btnNdryshoPasswordin" focusTraversable="false" onAction="#ndryshoPasswordin" prefHeight="61.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: #da251e;" styleClass="btnChangePassword" text="Ndrysho Passwordin" textFill="#da251e">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="16.0" top="25.0" />
+                     </HBox.margin>
+                  </JFXButton>
                   <JFXButton fx:id="btnDil" focusTraversable="false" onAction="#dil" prefHeight="61.0" prefWidth="214.0" style="-fx-background-color: #DA251E;" styleClass="btnDil" text="Dil" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="16.0" top="25.0" />

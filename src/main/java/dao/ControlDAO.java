@@ -10,7 +10,25 @@ public class ControlDAO {
 	private LlojiBojesDao lloji_bojes_dao = new LlojiBojesDao();
 	private InventariDao inventari_dao = new InventariDao();
 	private ArketimDao arketim_dao = new ArketimDao();
+	private LoginDao login_dao = new LoginDao();
+	private PerdoruesitDao perdoruesit_dao = new PerdoruesitDao();
 	
+	public PerdoruesitDao getPerdoruesitDao() {
+		return perdoruesit_dao;
+	}
+
+	public void setPerdoruesitDao(PerdoruesitDao perdoruesit_dao) {
+		this.perdoruesit_dao = perdoruesit_dao;
+	}
+
+	public LoginDao getLoginDao() {
+		return login_dao;
+	}
+
+	public void setLoginDao(LoginDao login_dao) {
+		this.login_dao = login_dao;
+	}
+
 	public static ControlDAO getControlDao() {
 		return dao;
 	}

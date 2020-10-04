@@ -5,6 +5,7 @@ import controller.BojraController;
 import controller.FurnizimController;
 import controller.InventariController;
 import controller.KlientetController;
+import controller.PerdoruesitController;
 import javafx.scene.CacheHint;
 import javafx.scene.layout.VBox;
 
@@ -15,6 +16,7 @@ public class Controllers {
 	private static BojraController bojraController;
 	private static FurnizimController furnizimController;
 	private static InventariController inventariController;
+	private static PerdoruesitController perdoruesitController;
 	
 	public static void getKlientet(VBox box) {
 		klientetController = klientetController == null ? new KlientetController() : klientetController ;
@@ -39,6 +41,11 @@ public class Controllers {
 	public static void getInventari(VBox box) {
 		inventariController =  new InventariController();
 		config(box, inventariController);
+	}
+	
+	public static void getPerdoruesit(VBox box) {
+		perdoruesitController =  perdoruesitController == null ? new PerdoruesitController() : perdoruesitController ;
+		config(box, perdoruesitController);
 	}
 	
 	public static void config(VBox box, VBox content) {

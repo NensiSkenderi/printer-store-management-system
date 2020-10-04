@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="920.0" style="-fx-background-size: 100% 100%; -fx-background-repeat: repeat;" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="634.0" prefWidth="850.0" styleClass="background_image-register" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane layoutX="482.0" prefHeight="634.0" prefWidth="426.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="482.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="0.0">
+               <center>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="366.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="102.0" prefWidth="335.0" text="Login" textAlignment="CENTER" textFill="#da251e" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="30.0" right="40.0" top="60.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="30.0" right="50.0" top="20.0" />
+                           </VBox.margin>
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../images/username-blue.png" />
+                                 </image>
+                              </ImageView>
+                              <JFXTextField fx:id="txtUsername" focusColor="#0093dc" labelFloat="true" promptText="Username" styleClass="jfx-text-field1" unFocusColor="#0093dc" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="30.0" right="50.0" top="30.0" />
+                           </VBox.margin>
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../images/password.png" />
+                                 </image>
+                              </ImageView>
+                              <JFXPasswordField fx:id="txtPassword" focusColor="#0093dc" labelFloat="true" onAction="#checkLogin" promptText="Password" styleClass="jfx-text-field1" unFocusColor="#0093dc" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="lblError" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="303.0" textFill="RED" VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets left="33.0" right="30.0" top="40.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Rubik Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnLogin" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" mnemonicParsing="false" onAction="#checkLogin" prefHeight="39.0" prefWidth="178.0" style="-fx-background-color: #DA251E;" text="Login" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="btn" />
+                              <String fx:value="btnLogin" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </Button>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="39.0" prefWidth="226.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="110.0" right="30.0" top="25.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets left="30.0" />
+                     </opaqueInsets>
+                  </VBox>
+               </center>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </BorderPane>
+            <ImageView fitHeight="569.0" fitWidth="624.0" layoutX="-69.0" layoutY="74.0" nodeOrientation="RIGHT_TO_LEFT" preserveRatio="true" rotate="90.0">
+               <image>
+                  <Image url="@../images/loginImage.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

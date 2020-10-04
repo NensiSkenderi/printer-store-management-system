@@ -86,7 +86,7 @@ CREATE TABLE `furnizim` (
   PRIMARY KEY (`id`),
   KEY `bojra_id` (`bojra_id`),
   CONSTRAINT `furnizim_ibfk_1` FOREIGN KEY (`bojra_id`) REFERENCES `bojra` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +95,7 @@ CREATE TABLE `furnizim` (
 
 LOCK TABLES `furnizim` WRITE;
 /*!40000 ALTER TABLE `furnizim` DISABLE KEYS */;
+INSERT INTO `furnizim` VALUES (11,4,10,12,'2020-10-04');
 /*!40000 ALTER TABLE `furnizim` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,6 +120,7 @@ CREATE TABLE `inventari` (
 
 LOCK TABLES `inventari` WRITE;
 /*!40000 ALTER TABLE `inventari` DISABLE KEYS */;
+INSERT INTO `inventari` VALUES (4,4);
 /*!40000 ALTER TABLE `inventari` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,6 +176,36 @@ INSERT INTO `lloji_bojra` VALUES (1,'Cartridge laser'),(2,'Mbushje inkjet');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `perdoruesit`
+--
+
+DROP TABLE IF EXISTS `perdoruesit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `perdoruesit` (
+  `userid` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(64) NOT NULL,
+  `password` text NOT NULL,
+  `name` varchar(64) DEFAULT NULL,
+  `surname` varchar(64) DEFAULT NULL,
+  `telefon` varchar(16) DEFAULT NULL,
+  `rights` varchar(16) NOT NULL,
+  `email` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `perdoruesit`
+--
+
+LOCK TABLES `perdoruesit` WRITE;
+/*!40000 ALTER TABLE `perdoruesit` DISABLE KEYS */;
+INSERT INTO `perdoruesit` VALUES (1,'ergikame','8Ket+TdJLT4mMlQmNsbyNg==','Ergi','Kame','0696640747','Admin','ergikame@gmail.com'),(2,'user','9L2fgNcixhAVu/fUIdwu0g==','user','user','user','User','user');
+/*!40000 ALTER TABLE `perdoruesit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `shitje`
 --
 
@@ -196,7 +228,7 @@ CREATE TABLE `shitje` (
   KEY `arketim_id` (`arketim_id`),
   CONSTRAINT `shitje_ibfk_1` FOREIGN KEY (`klient_id`) REFERENCES `klient` (`id`),
   CONSTRAINT `shitje_ibfk_2` FOREIGN KEY (`arketim_id`) REFERENCES `arketuar` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,6 +237,7 @@ CREATE TABLE `shitje` (
 
 LOCK TABLES `shitje` WRITE;
 /*!40000 ALTER TABLE `shitje` DISABLE KEYS */;
+INSERT INTO `shitje` VALUES (23,'tetete',1,'2020-10-04',0,'2020-10-04',4,1,232,0),(25,'Tvsh',2,'2020-10-04',1,'2020-10-04',4,3,2,0),(26,'sdasdas',2,'2020-10-04',1,'2020-10-04',4,2,2,0);
 /*!40000 ALTER TABLE `shitje` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -217,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-02 18:11:34
+-- Dump completed on 2020-10-04 18:27:21
