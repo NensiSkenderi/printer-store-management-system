@@ -18,12 +18,12 @@
          <children>
             <HBox layoutX="6.0" layoutY="26.0" prefHeight="42.0" prefWidth="844.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="16.0">
                <children>
-                  <FontAwesomeIconView glyphName="SEARCH" style="-fx-fill: #4186ce; -fx-font-size: 24;" text="">
+                  <FontAwesomeIconView glyphName="SEARCH" style="-fx-fill: #da251e; -fx-font-size: 24;" text="">
                      <HBox.margin>
                         <Insets left="15.0" top="5.0" />
                      </HBox.margin>
                   </FontAwesomeIconView>
-                  <JFXTextField fx:id="txtSearch" focusColor="#4186ce" labelFloat="true" prefHeight="38.0" prefWidth="185.0" promptText="Search..." unFocusColor="#4186ce" HBox.hgrow="ALWAYS">
+                  <JFXTextField fx:id="txtSearch" focusColor="#da251e" labelFloat="true" prefHeight="38.0" prefWidth="185.0" promptText="Search..." unFocusColor="#da251e" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets bottom="5.0" top="5.0" />
                      </padding>

@@ -35,8 +35,8 @@
                         <Insets left="15.0" right="20.0" />
                      </HBox.margin>
                   </JFXTextField>
-                  <JFXDatePicker fx:id="datePickerFrom" defaultColor="#0093dc" editable="false" onAction="#filterDate" prefHeight="39.0" prefWidth="205.0" HBox.hgrow="ALWAYS" />
-                  <JFXDatePicker fx:id="datePickerTo" defaultColor="#0093dc" editable="false" layoutX="548.0" layoutY="10.0" onAction="#filterDate" prefHeight="39.0" prefWidth="205.0" HBox.hgrow="ALWAYS">
+                  <JFXDatePicker fx:id="datePickerFrom" defaultColor="#da251e" editable="false" onAction="#filterDate" prefHeight="39.0" prefWidth="205.0" HBox.hgrow="ALWAYS" />
+                  <JFXDatePicker fx:id="datePickerTo" defaultColor="#da251e" editable="false" layoutX="548.0" layoutY="10.0" onAction="#filterDate" prefHeight="39.0" prefWidth="205.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>

@@ -167,6 +167,8 @@ public class BojraController extends VBox {
 			}
 		});
 
+		if(Utils.rights.contentEquals("User"))
+			btnEdit.setVisible(false);
 
 		tblBojra.setItems(tableViewData);
 

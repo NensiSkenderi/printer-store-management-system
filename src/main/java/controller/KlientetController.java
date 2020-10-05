@@ -166,6 +166,9 @@ public class KlientetController extends VBox {
 			}
 		});
 
+		if(Utils.rights.contentEquals("User"))
+			btnEdit.setVisible(false);
+		
 		tblKlient.setItems(tableViewData);
 
 	}

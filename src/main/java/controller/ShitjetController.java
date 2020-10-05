@@ -169,7 +169,7 @@ public class ShitjetController extends VBox {
 		tblColSasia.setCellValueFactory(new PropertyValueFactory<>("sasia"));
 		tblColCmimi.setCellValueFactory(new PropertyValueFactory<>("cmimi"));
 		tblColVlera.setCellValueFactory(new PropertyValueFactory<>("vlera"));
-
+			
 		tblColDelete.setStyle("-fx-alignment:center;");
 		tblColDelete.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		tblColDelete.setCellFactory(param -> new TableCell<Shitje, Shitje>() {
@@ -205,7 +205,13 @@ public class ShitjetController extends VBox {
 				});
 			}
 		});
-
+		
+		
+		if(Utils.rights.contentEquals("User")) {
+			btnEdit.setVisible(false);
+			tblColDelete.setVisible(false);
+		}
+		
 		tblShitjet.setItems(tableViewData);
 
 	}

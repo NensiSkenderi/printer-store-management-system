@@ -364,7 +364,7 @@ public class Utils {
              }
         	 try {
 				if(!ControlDAO.getControlDao().getLoginDao().get_pass().equals(existing_password.getText().toString())) {
-					lblError.setText("Passwordi i vjetï¿½r nuk ï¿½shtï¿½ i saktï¿½!"); 
+					lblError.setText("Passwordi i vjetër nuk është i saktë!"); 
 					return;
 				}
 			} catch (SQLException e2) {
@@ -372,7 +372,7 @@ public class Utils {
 			}
      		
      		if (!new_password.getText().toString().equals(repeat_new_password.getText().toString())) {
-     			lblError.setText("Passwordi i ri nuk ï¿½shtï¿½ njï¿½soj!"); 
+     			lblError.setText("Passwordi i ri nuk është njësoj!"); 
      			return;
      		}
      		
