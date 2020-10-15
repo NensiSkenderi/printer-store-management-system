@@ -194,7 +194,7 @@ public class PerdoruesitController extends VBox {
 	@FXML
 	private void add() throws IOException, SQLException {
 		edit = false;
-		new Utils().openEditScene("PerdoruesitShto", "username");
+		new Utils().openEditScene("perdoruesitShto", "username");
 		loadPerdoruesit();
 	}
 
@@ -219,7 +219,7 @@ public class PerdoruesitController extends VBox {
 		PerdoruesitDataHolder.setEmail(Perdoruesit.getEmail());
 		PerdoruesitDataHolder.setAccess(Perdoruesit.getAccess());
 		PerdoruesitDataHolder.setUserid(Perdoruesit.getUserid());
-		new Utils().openEditScene("PerdoruesitShto", "username");
+		new Utils().openEditScene("perdoruesitShto", "username");
 		loadPerdoruesit();
 	}
 

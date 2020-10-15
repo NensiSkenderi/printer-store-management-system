@@ -17,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {       
     	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_empty_page.fxml"));
     	root=(Parent)loader.load();
     	
     	Scene scene = new Scene(root);
