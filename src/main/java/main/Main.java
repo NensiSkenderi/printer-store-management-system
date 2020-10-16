@@ -21,10 +21,10 @@ public class Main extends Application {
     	root=(Parent)loader.load();
     	
     	Scene scene = new Scene(root);
-    	primaryStage.setResizable(false);
+    	//primaryStage.setResizable(false);
     	primaryStage.setScene(scene);
     	primaryStage.centerOnScreen();
-    	primaryStage.setTitle("Refill Plus");
+    	//primaryStage.setTitle("Refill Plus");
     	primaryStage.getIcons().add(new Image("/images/logo_icon.png"));
     	primaryStage.show();
     }
