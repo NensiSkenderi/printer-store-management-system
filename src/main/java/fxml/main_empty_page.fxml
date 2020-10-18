@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="550.0" minHeight="550.0" prefHeight="550.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.test">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.test">
    <center>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" style="-fx-background-size: 100% 100%; -fx-background-repeat: no-repeat; -fx-background-color: white;" stylesheets="@../css/style.css" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -24,7 +23,7 @@
                            <children>
                               <Label maxWidth="1.7976931348623157E308" text="Готівка" textFill="#615d5d" HBox.hgrow="ALWAYS">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="30.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="25.0" />
@@ -44,6 +43,9 @@
                            <VBox.margin>
                               <Insets left="25.0" right="50.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
                         </Label>
                      </children>
                   </VBox>
@@ -53,7 +55,7 @@
                            <children>
                               <Label maxWidth="1.7976931348623157E308" text="Бонуси" textFill="#615d5d" HBox.hgrow="ALWAYS">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="30.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="25.0" />
@@ -71,13 +73,19 @@
                         </HBox>
                         <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" text="для сплати бонусами, а також для нарахування бонусів піднесіть карту лояльності до читача штрих-кодів." textFill="#615d5d" wrapText="true" VBox.vgrow="NEVER">
                            <VBox.margin>
-                              <Insets left="25.0" right="10.0" />
+                              <Insets left="25.0" right="50.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
                         </Label>
                         <Label layoutX="35.0" layoutY="70.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" text="Ви можете обрати бажану суму сплати" textFill="#615d5d" wrapText="true">
                            <VBox.margin>
                               <Insets left="25.0" right="50.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
                         </Label>
                      </children>
                   </VBox>
@@ -87,7 +95,7 @@
                            <children>
                               <Label maxWidth="1.7976931348623157E308" text="Купони" textFill="#615d5d" HBox.hgrow="ALWAYS">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="30.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="25.0" />
@@ -107,12 +115,15 @@
                            <VBox.margin>
                               <Insets left="25.0" right="50.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
                         </Label>
                      </children>
                   </VBox>
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                  <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
                </VBox.margin>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
@@ -122,34 +133,34 @@
       </VBox>
    </center>
    <top>
-      <AnchorPane minHeight="-Infinity" prefHeight="54.0" prefWidth="562.0" style="-fx-background-color: #00A8E9;" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="-Infinity" prefHeight="86.0" prefWidth="600.0" style="-fx-background-color: #00A8E9;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" layoutX="316.0" layoutY="24.0" text="Сплатити послуги автомийки" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
    </top>
    <bottom>
-      <AnchorPane minHeight="-Infinity" prefHeight="115.0" prefWidth="562.0" style="-fx-background-color: #baecff;" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="234.0" prefWidth="600.0" style="-fx-background-color: #baecff;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
+                  <HBox prefHeight="86.0" prefWidth="600.0" style="-fx-background-color: white;">
                      <children>
                         <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Бонуси:" textFill="#615d5d" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="120" textFill="#615d5d" HBox.hgrow="ALWAYS">
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="120" textFill="#615d5d" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="105.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Гpн" textFill="#615d5d" HBox.hgrow="ALWAYS">
+                        <Label alignment="CENTER" layoutX="105.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Гpн" textFill="#615d5d" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -159,9 +170,9 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <VBox maxWidth="-Infinity" prefWidth="300.0">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="140.0" prefWidth="400.0">
                      <children>
-                        <JFXSlider fx:id="slider1" blockIncrement="1.0" indicatorPosition="RIGHT" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" style="-fx-font-size: 24px;" value="5.0">
+                        <JFXSlider fx:id="slider1" blockIncrement="1.0" indicatorPosition="RIGHT" majorTickUnit="1.0" max="10.0" maxHeight="1.7976931348623157E308" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" style="-fx-font-size: 28px;" value="5.0" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="2.0" />
                            </VBox.margin>
