@@ -170,9 +170,9 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="140.0" prefWidth="400.0">
+                  <VBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="140.0" prefWidth="400.0">
                      <children>
-                        <JFXSlider fx:id="slider1" blockIncrement="1.0" indicatorPosition="RIGHT" majorTickUnit="1.0" max="10.0" maxHeight="1.7976931348623157E308" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" style="-fx-font-size: 28px;" value="5.0" VBox.vgrow="ALWAYS">
+                        <JFXSlider blockIncrement="1.0" indicatorPosition="RIGHT" majorTickUnit="1.0" max="8.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" min="3.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" style="-fx-font-size: 34px;" styleClass="jfx-slider-style" stylesheets="@../css/style.css" value="5.0" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="2.0" />
                            </VBox.margin>
