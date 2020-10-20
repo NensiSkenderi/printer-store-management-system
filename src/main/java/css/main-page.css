@@ -1,6 +1,4 @@
 .main-vbox{
-	-fx-background-size:  100% 100%;
-	-fx-background-repeat:  no-repeat;
 	-fx-background-color:  white;
 }
 
@@ -10,4 +8,54 @@
 
 .anchorPane2{
 	-fx-background-color:  #baecff;
+}
+
+.hbox-white {
+	-fx-background-color:   white;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * JFX Slider                                                                  *
+ *                                                                             *
+ ******************************************************************************/
+
+.vbox-center{
+	-fx-background-color :  rgba(255,255,255, 0.85);
+	-fx-border-color :  #00A8E9;
+	-fx-border-radius : 20;
+	-fx-background-radius : 20;
+}
+.svg-slider .thumb {
+    -fx-stroke: black;
+    -fx-fill: black;
+}
+
+
+.jfx-slider-colored {
+    -jfx-default-thumb: red;
+    -jfx-default-track: red;
+}
+
+.jfx-slider-style {
+    -jfx-indicator-position: right;
+}
+
+.jfx-slider-style > .thumb {
+    -fx-background-color: #0E9654;
+}
+
+.jfx-slider-style .track {
+    -fx-background-color: #0E9654;
+    -fx-pref-height: 15px;
+    -fx-pref-width: 15px;
+}
+
+.jfx-slider-style .animated-thumb {
+    -fx-background-color: #00A8E9;
+}
+
+.jfx-slider-style .sliderValue {
+    -fx-stroke: WHITE;
+    -fx-font-size: 16.0;
 }

@@ -1,3 +1,7 @@
 .main-vbox {
 	-fx-background-color :  #CFD8DC;
 }
+
+.anchor-pane {
+	-fx-background-color :   #607D8B;
+}
