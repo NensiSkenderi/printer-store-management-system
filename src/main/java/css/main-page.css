@@ -1,0 +1,13 @@
+.main-vbox{
+	-fx-background-size:  100% 100%;
+	-fx-background-repeat:  no-repeat;
+	-fx-background-color:  white;
+}
+
+.anchorPane1{
+	-fx-background-color:  #00A8E9;
+}
+
+.anchorPane2{
+	-fx-background-color:  #baecff;
+}
