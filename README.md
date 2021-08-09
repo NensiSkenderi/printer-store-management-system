@@ -21,8 +21,8 @@ can store, update, delete information about printers, toner, inks.
 
 Import the db.sql file to MySQL workbench. After importing, you should
 see that there is already a user with the following credentials :
-username -> user
-password -> user
+- username -> user
+- password -> user
 Use these credentials to login when running the project.
 
 
