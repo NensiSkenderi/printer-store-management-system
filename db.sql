@@ -201,7 +201,7 @@ CREATE TABLE `perdoruesit` (
 
 LOCK TABLES `perdoruesit` WRITE;
 /*!40000 ALTER TABLE `perdoruesit` DISABLE KEYS */;
-INSERT INTO `perdoruesit` VALUES (1,'ergikame','8Ket+TdJLT4mMlQmNsbyNg==','Ergi','Kame','0696640747','Admin','ergikame@gmail.com'),(2,'user','9L2fgNcixhAVu/fUIdwu0g==','user','user','user','User','user');
+INSERT INTO `perdoruesit` VALUES (1,'user','9L2fgNcixhAVu/fUIdwu0g==','user','user','user','User','user');
 /*!40000 ALTER TABLE `perdoruesit` ENABLE KEYS */;
 UNLOCK TABLES;
 
